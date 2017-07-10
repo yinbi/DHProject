@@ -1,0 +1,8 @@
+*.mdb
+*.ldb
+*.suo
+Debug/
+Release/
+obj/
+bin/
+
