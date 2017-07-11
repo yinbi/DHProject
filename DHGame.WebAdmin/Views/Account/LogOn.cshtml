@@ -1,0 +1,78 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>登录</title>
+    <link rel="stylesheet" href="/themes/index/css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/themes/index/css/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/themes/index/css/invalid.css" type="text/css" media="screen" />
+    @*<script type="text/javascript" src="/js/jquery-1.7.2.js"></script>*@
+    <script type="text/javascript" src="/Scripts/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="/themes/index/scripts/facebox.js"></script>
+    <script type="text/javascript">
+        function checksubmit() {
+            var u = $("#UserName").val();
+            var p = $("#Password").val();
+
+            if (u == "" || p == "") {
+                alert("用户名和密码不能为空");
+                return false;
+            }
+
+            if (u == " " || p == " ") {
+                alert("无效的用户名和密码格式");
+                return false;
+            }
+            return true;
+        }
+        $(function () {
+            $("#imgyzm").attr("src", "/vdcode.ashx?tt=login&" + Math.random());
+            $("#imgyzm").click(function () {
+                $(this).attr("src", "/vdcode.ashx?tt=login&" + Math.random());
+            });
+        });
+
+
+    </script>
+</head>
+<body id="login">
+    <div id="login-wrapper" class="png_bg">
+        <div id="login-top">
+            <h1>后台登录</h1>
+            <a href="/"><img id="logo" src="/themes/Default/images/logo.png" alt="登录" /></a>
+        </div>
+        <div id="login-content">
+            <form id="login" action="?" method="post">
+                <div class="notification information png_bg">
+                    <div>@ViewBag.info</div>
+                </div>
+                <p>
+                    <label>用户名</label>
+                    <input id="UserName" name="UserName" class="text-input" type="text" />
+                </p>
+                <div class="clear"></div>
+                <p>
+                    <label>密码</label>
+                    <input id="Password" name="Password" class="text-input" type="password" />
+                </p>
+                <div class="clear"></div>
+                <p>
+                    <label>验证码：</label>
+                    <input id="yzm" name="Yzm" class="text-input" type="text" style="height: 25px;width: 90px; margin:0 0 15px 30px; float:left;" />
+                    <img id="imgyzm" style="height: 25px;width: 90px; margin-top:5px; float:right;" />
+                </p>
+                <div class="clear"></div>
+                <div class="clear"></div>
+                <p>
+                    <input class="button" type="submit" value="登录" />
+                </p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
