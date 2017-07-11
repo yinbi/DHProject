@@ -265,7 +265,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-<<<<<<< HEAD
     <Content Include="js\dwz.frag.xml" />
     <Content Include="juibin\dwz.min.js" />
     <Content Include="juibin\ESC.wsf" />
@@ -281,10 +280,8 @@
     <Content Include="uploadify\scripts\jquery.uploadify.js" />
     <Content Include="uploadify\scripts\jquery.uploadify.min.js" />
     <Content Include="uploadify\scripts\uploadify.swf" />
-=======
     <Content Include="juibin\gzjs-esc.bat" />
     <Content Include="juibin\gzjs.sh" />
->>>>>>> 7d5353753f7cbff240a8da745787eec2ba4808ea
     <Content Include="xheditor\xheditor-1.2.2.min.js" />
     <Content Include="xheditor\xheditor_emot\default\angry.gif" />
     <Content Include="xheditor\xheditor_emot\default\awkward.gif" />
@@ -556,11 +553,8 @@
     <Content Include="xheditor\xheditor_skin\vista\img\wmp.gif" />
     <Content Include="xheditor\xheditor_skin\vista\img\wordimg.gif" />
     <Content Include="xheditor\xheditor_skin\vista\ui.css" />
-<<<<<<< HEAD
     <Content Include="juibin\gzjs-esc.bat" />
     <Content Include="juibin\gzjs.sh" />
-=======
->>>>>>> 7d5353753f7cbff240a8da745787eec2ba4808ea
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="js\dwz.accordion.js" />
     <Content Include="js\dwz.ajax.js" />
@@ -858,8 +852,6 @@
     <Content Include="themes\silver\images\tree\folder.png" />
     <Content Include="themes\silver\images\tree\tree.png" />
     <Content Include="themes\silver\style.css" />
-<<<<<<< HEAD
-=======
     <Content Include="uploadify\Change Log.txt" />
     <Content Include="uploadify\css\uploadify.css" />
     <Content Include="uploadify\img\add.jpg" />
@@ -870,7 +862,6 @@
     <Content Include="uploadify\scripts\jquery.uploadify.js" />
     <Content Include="uploadify\scripts\jquery.uploadify.min.js" />
     <Content Include="uploadify\scripts\uploadify.swf" />
->>>>>>> 7d5353753f7cbff240a8da745787eec2ba4808ea
     <Content Include="Views\Shared\_Layout1.cshtml">
       <SubType>Code</SubType>
     </Content>
