@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{55E77A63-D12D-4012-A832-3DD33A5C1EF2}</ProjectGuid>
+    <ProjectGuid>{5B9EAF5A-5388-4AE7-BF31-9A0A738ABC1B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DHGame.Data</RootNamespace>
-    <AssemblyName>DHGame.Data</AssemblyName>
+    <RootNamespace>DHGame.Entity</RootNamespace>
+    <AssemblyName>DHGame.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,15 +28,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,24 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DHWebSiteDatabase.cs" />
-    <Compile Include="MyDataBase.cs" />
+    <Compile Include="DHWebSiteDB\Admins.cs" />
+    <Compile Include="DHWebSiteDB\CurrentUser.cs" />
+    <Compile Include="DHWebSiteDB\Modules.cs" />
+    <Compile Include="DHWebSiteDB\Roles.cs" />
+    <Compile Include="DHWebSiteDB\RolesPermission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DHGame.Config\DHGame.Config.csproj">
-      <Project>{8e40d8a2-6047-44b6-b261-78dfe4402bf1}</Project>
-      <Name>DHGame.Config</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DHGame.Entity\DHGame.Entity.csproj">
-      <Project>{5b9eaf5a-5388-4ae7-bf31-9a0a738abc1b}</Project>
-      <Name>DHGame.Entity</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -148,11 +148,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vdcode.ashx.cs">
       <DependentUpon>Vdcode.ashx</DependentUpon>
@@ -892,7 +894,24 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DHGame.Config\DHGame.Config.csproj">
+      <Project>{8e40d8a2-6047-44b6-b261-78dfe4402bf1}</Project>
+      <Name>DHGame.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DHGame.Entity\DHGame.Entity.csproj">
+      <Project>{5b9eaf5a-5388-4ae7-bf31-9a0a738abc1b}</Project>
+      <Name>DHGame.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DHGame.Logic\DHGame.Logic.csproj">
+      <Project>{d9056ffb-939a-4e24-a3ff-ccc1f93d55f6}</Project>
+      <Name>DHGame.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DHGame.Utility\DHGame.Utility.csproj">
+      <Project>{6925aeb9-44e8-4fe3-a288-2420e5fa8466}</Project>
+      <Name>DHGame.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
