@@ -34,7 +34,9 @@ CREATE TABLE Modules
 Id int not null identity(1,1) constraint pk_Modules_id  primary key,
 ParentId int not null,
 Title nvarchar(30) not null,
-Modules_url nvarchar(100) not null,
+--Modules_url nvarchar(100) not null,
+Controller nvarchar(20) not null,
+[Action] nvarchar(20) not null,
 OrderNo int not null,
 Nullity bit not null,
 CreateTime datetime not null default(getdate())	--创建时间

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DHWebAdmin", "DHWebAdmin\DHWebAdmin.csproj", "{67ED3EB3-DBDC-41AC-AE7B-B35154A3DAF3}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DHGame.Enum", "DHGame.Enum\DHGame.Enum.csproj", "{455255C7-5103-455E-87DE-BC7A25C80E11}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{F68E1C04-8384-4DA4-B8A7-1B08D996BA98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DHGame.WebAdmin", "DHGame.WebAdmin\DHGame.WebAdmin.csproj", "{47786122-AE4D-400C-A2B8-A367D3DC06C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{F68E1C04-8384-4DA4-B8A7-1B08D996BA98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F68E1C04-8384-4DA4-B8A7-1B08D996BA98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F68E1C04-8384-4DA4-B8A7-1B08D996BA98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47786122-AE4D-400C-A2B8-A367D3DC06C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47786122-AE4D-400C-A2B8-A367D3DC06C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47786122-AE4D-400C-A2B8-A367D3DC06C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47786122-AE4D-400C-A2B8-A367D3DC06C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

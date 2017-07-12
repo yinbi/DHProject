@@ -13,13 +13,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DHWebAdmin</RootNamespace>
     <AssemblyName>DHWebAdmin</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,22 +39,27 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -60,9 +67,6 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -118,6 +122,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.30506.0\lib\net40\WebMatrix.Data.dll</HintPath>
@@ -129,30 +134,6 @@
     <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.30506.0\lib\net40\WebMatrix.WebData.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.OData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -194,6 +175,9 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vdcode.ashx.cs">
+      <DependentUpon>Vdcode.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="chart\g.bar.js" />
@@ -270,6 +254,55 @@
     <Content Include="juibin\ESC.wsf" />
     <Content Include="juibin\gzip.exe" />
     <Content Include="juibin\yuicompressor-2.4.8.jar" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="themes\index\css\invalid.css" />
+    <Content Include="themes\index\css\reset.css" />
+    <Content Include="themes\index\css\style.css" />
+    <Content Include="themes\index\images\b.png" />
+    <Content Include="themes\index\images\bg-body.gif" />
+    <Content Include="themes\index\images\bg-button-green.gif" />
+    <Content Include="themes\index\images\bg-content-box.gif" />
+    <Content Include="themes\index\images\bg-form-field.gif" />
+    <Content Include="themes\index\images\bg-login-top.png" />
+    <Content Include="themes\index\images\bg-login.gif" />
+    <Content Include="themes\index\images\bg-menu-item-current.gif" />
+    <Content Include="themes\index\images\bg-menu-item-green.gif" />
+    <Content Include="themes\index\images\bg-radial-gradient.gif" />
+    <Content Include="themes\index\images\bg-sidebar.gif" />
+    <Content Include="themes\index\images\bl.png" />
+    <Content Include="themes\index\images\br.png" />
+    <Content Include="themes\index\images\icons\bullet_black.png" />
+    <Content Include="themes\index\images\icons\Button_Back.png" />
+    <Content Include="themes\index\images\icons\clock_48.png" />
+    <Content Include="themes\index\images\icons\comment_48.png" />
+    <Content Include="themes\index\images\icons\cross.png" />
+    <Content Include="themes\index\images\icons\cross_circle.png" />
+    <Content Include="themes\index\images\icons\cross_grey_small.png" />
+    <Content Include="themes\index\images\icons\doanload.gif" />
+    <Content Include="themes\index\images\icons\exclamation.png" />
+    <Content Include="themes\index\images\icons\hammer_screwdriver.png" />
+    <Content Include="themes\index\images\icons\image_add_48.png" />
+    <Content Include="themes\index\images\icons\information.png" />
+    <Content Include="themes\index\images\icons\jquery.wysiwyg.gif" />
+    <Content Include="themes\index\images\icons\paper_content_pencil_48.png" />
+    <Content Include="themes\index\images\icons\pencil.png" />
+    <Content Include="themes\index\images\icons\pencil_48.png" />
+    <Content Include="themes\index\images\icons\tick_circle.png" />
+    <Content Include="themes\index\images\logo.png" />
+    <Content Include="themes\index\images\menu-current-arrow.gif" />
+    <Content Include="themes\index\images\shortcut-button-bg.gif" />
+    <Content Include="themes\index\images\tl.png" />
+    <Content Include="themes\index\images\tr.png" />
+    <Content Include="themes\index\scripts\config.js" />
+    <Content Include="themes\index\scripts\facebox.js" />
+    <Content Include="themes\index\scripts\jaaulde.cookies.js" />
+    <Content Include="themes\index\scripts\jquery.cookies.js" />
+    <Content Include="themes\index\scripts\jquery.wysiwyg.js" />
+    <Content Include="themes\index\scripts\simpla.jquery.configuration.js" />
     <Content Include="uploadify\Change Log.txt" />
     <Content Include="uploadify\css\uploadify.css" />
     <Content Include="uploadify\img\add.jpg" />
@@ -553,7 +586,6 @@
     <Content Include="xheditor\xheditor_skin\vista\ui.css" />
     <Content Include="juibin\gzjs-esc.bat" />
     <Content Include="juibin\gzjs.sh" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="js\dwz.accordion.js" />
     <Content Include="js\dwz.ajax.js" />
     <Content Include="js\dwz.alertMsg.js" />
@@ -599,8 +631,8 @@
     <Content Include="js\jquery.validate.js" />
     <Content Include="js\jquery.validate.min.js" />
     <Content Include="js\speedup.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
@@ -901,6 +933,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\UserInfo\List.cshtml" />
     <Content Include="Views\UserInfo\View1.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Vdcode.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
