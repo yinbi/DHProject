@@ -23,6 +23,11 @@ namespace DHGame.Entity.DHWebSiteDB
         public string Name { get; set; }
 
         /// <summary>
+        /// 真实姓名
+        /// </summary>
+        public string RealName { get; set; }
+
+        /// <summary>
         /// 角色ID
         /// </summary>
         public int RoleId { get; set; }

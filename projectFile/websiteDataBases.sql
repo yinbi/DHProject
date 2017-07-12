@@ -78,9 +78,14 @@ CreateTime datetime not null default(getdate())	--创建时间
 )
 --========================================================================
 
-SELECT * FROM DHWebSiteDB.dbo.Admins
+
 --INSERT INTO DHWebSiteDB.dbo.Admins(LoginName,LoginPwd,RealName,RoleId,LastLoginTime,LastLoginIp,ErrNum,[Enable])
 --values('admin','1zYxu0CW5FsGf6ge2S/uBw==','ceshi',0,getdate(),'127.0.0.1',0,1)
+--UPDATE DHWebSiteDB.dbo.Admins SET RoleId=1 WHERE Id=1
+
+--INSERT INTO DHWebSiteDB.dbo.Roles(RoleName,RoleDesc,Nullity) VALUES('超级管理员','拥有所有权限',0)
+
+SELECT * FROM DHWebSiteDB.dbo.Admins
 SELECT * FROM DHWebSiteDB.dbo.Modules
 SELECT * FROM DHWebSiteDB.dbo.Roles
 SELECT * FROM DHWebSiteDB.dbo.RolesPermission

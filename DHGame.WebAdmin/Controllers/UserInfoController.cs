@@ -16,11 +16,16 @@ namespace DHGame.WebAdmin.Controllers
             return View();
         }
 
-
+        [HttpGet]
         public ActionResult List()
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult List()
+        {
+            return View();
+        } 
         public ActionResult View1()
         {
             return View();

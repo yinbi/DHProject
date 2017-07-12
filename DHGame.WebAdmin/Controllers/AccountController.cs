@@ -20,6 +20,12 @@ namespace DHGame.WebAdmin.Controllers
         {
             return View();
         }
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Home");
+        }
 
         public ActionResult LogOn()
         {
@@ -64,6 +70,7 @@ namespace DHGame.WebAdmin.Controllers
                     {
                         Id = user.Id,
                         Name = user.LoginName,//user.AdmName,
+                        RealName=user.RealName,
                         RoleId = user.RoleId// = userRoleBll.UserRoleIds(user.Id)
                     };
 
