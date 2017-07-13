@@ -21,8 +21,8 @@ namespace DHGame.WebAdmin.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult List()
+
+        public ActionResult ListWhere(FormCollection form)
         {
             return View();
         } 

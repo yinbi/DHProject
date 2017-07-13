@@ -1,6 +1,12 @@
 ﻿@{
     Layout = null;
 }
+<form id="pagerForm" method="post" action="#rel#">
+    <input type="hidden" name="pageNum" value="1" />
+    <input type="hidden" name="numPerPage" value="${model.numPerPage}" />
+    <input type="hidden" name="orderField" value="${param.orderField}" />
+    <input type="hidden" name="orderDirection" value="${param.orderDirection}" />
+</form>
 <div class="pageHeader">
     <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="/UserInfo/List" method="post">
         <div class="searchBar">
@@ -20,25 +26,6 @@
                     </select>
                 </li>
             </ul>
-            <!--
-            <table class="searchContent">
-                <tr>
-                    <td>
-                        我的客户：<input type="text"/>
-                    </td>
-                    <td>
-                        <select class="combox" name="province">
-                            <option value="">所有省市</option>
-                            <option value="北京">北京</option>
-                            <option value="上海">上海</option>
-                            <option value="天津">天津</option>
-                            <option value="重庆">重庆</option>
-                            <option value="广东">广东</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            -->
             <div class="subBar">
                 <ul>
                     <li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>

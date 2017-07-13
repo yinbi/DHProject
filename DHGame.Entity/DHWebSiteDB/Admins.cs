@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,8 @@ namespace DHGame.Entity.DHWebSiteDB
         public string LoginPwd { get; set; }
         public string RealName { get; set; }
         public int RoleId { get; set; }
+        [ForeignKey("RoleId")]
+        public Roles Roles { get; set; }
         public DateTime LastLoginTime { get; set; }
         public string LastLoginIp { get; set; }
         public int ErrNum { get; set; }

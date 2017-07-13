@@ -434,7 +434,7 @@ body { overflow:hidden;}
 #header .headerNav { height:50px; background-repeat:no-repeat; background-position:100% -50px;}
 #header .logo { float:left; width:250px; height:50px; text-indent:-1000px;}
 
-#header .nav { display:block; height:21px; position:absolute; top:8px; right:70%; z-index:31;}
+#header .nav { display:block; height:21px; position:absolute; top:8px; right:80%; z-index:31;}
 #header .nav li { float:left; margin-left:-1px; padding:0 10px; line-height:11px; position:relative;}
 #header .nav li a { line-height:11px;}
 #header .nav ul { display:none; width:230px; border:solid 1px #06223e; overflow:hidden; background:#FFF; position:absolute; top:20px; right:0;}
@@ -442,7 +442,7 @@ body { overflow:hidden;}
 #header .nav ul li a { color:#000;}
 #header .nav .selected ul {display:block;}
 
-#header .themeList { position:absolute; top:30px; right:75%;}
+#header .themeList { position:absolute; top:30px; right:10px;}
 #header .themeList li { float:left; padding:0 3px;}
 #header .themeList li div { display:block; overflow:hidden; width:13px; height:11px; text-indent:-100px; cursor:pointer;}
 #header .themeList li.default div { background-position:0 0;}

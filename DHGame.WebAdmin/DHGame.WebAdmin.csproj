@@ -148,6 +148,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
@@ -891,6 +892,8 @@
     <Content Include="Views\UserInfo\List.cshtml" />
     <Content Include="Views\UserInfo\View1.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\UserInfo\ListWhere.cshtml" />
+    <Content Include="Views\AdminUser\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

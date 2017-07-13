@@ -9,10 +9,10 @@ go
 CREATE TABLE Admins
 (
 Id int not null identity(1,1) constraint pk_Admins_id  primary key,
-LoginName nvarchar(20) not null,
+LoginName nvarchar(20) not null constraint UQ_Admins_LoginName unique,
 LoginPwd nvarchar(34) not null,
 RealName nvarchar(20) not null,
-RoleId int not null,
+RoleId int not null constraint FK_Admins_RoleId FOREIGN KEY(RoleId) references Roles(Id),
 LastLoginTime datetime not null,
 LastLoginIp nvarchar(15) not null,
 ErrNum int not null,
@@ -80,12 +80,16 @@ CreateTime datetime not null default(getdate())	--创建时间
 
 
 --INSERT INTO DHWebSiteDB.dbo.Admins(LoginName,LoginPwd,RealName,RoleId,LastLoginTime,LastLoginIp,ErrNum,[Enable])
---values('admin','1zYxu0CW5FsGf6ge2S/uBw==','ceshi',0,getdate(),'127.0.0.1',0,1)
+--values('admin','1zYxu0CW5FsGf6ge2S/uBw==','ceshi',1,getdate(),'127.0.0.1',0,1)
 --UPDATE DHWebSiteDB.dbo.Admins SET RoleId=1 WHERE Id=1
 
 --INSERT INTO DHWebSiteDB.dbo.Roles(RoleName,RoleDesc,Nullity) VALUES('超级管理员','拥有所有权限',0)
+--INSERT INTO DHWebSiteDB.dbo.Roles(RoleName,RoleDesc,Nullity) VALUES('普通管理员','拥有普通管理权限',0)
 
 SELECT * FROM DHWebSiteDB.dbo.Admins
 SELECT * FROM DHWebSiteDB.dbo.Modules
 SELECT * FROM DHWebSiteDB.dbo.Roles
 SELECT * FROM DHWebSiteDB.dbo.RolesPermission
+
+SELECT * FROM DHWebSiteDB.dbo.Admins
+SELECT * FROM DHWebSiteDB.dbo.Roles
