@@ -29,6 +29,17 @@ namespace DHGame.Utility
             }
             return myRegex.IsMatch(_value);
         }
+        public static int GetPageCount(int totalCount, int pageSize)
+        {
+            int pagecount = 0;
+            if (0 >= totalCount) return pagecount;
+            if (totalCount % pageSize != 0)
+            {
+                pagecount++;
+            }
+            pagecount += (totalCount / pageSize);
+            return pagecount;
+        }
         ///// <summary>
         ///// 返回危险的那个字符
         ///// </summary>

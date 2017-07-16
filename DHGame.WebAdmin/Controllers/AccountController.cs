@@ -38,7 +38,7 @@ namespace DHGame.WebAdmin.Controllers
             var encPwc = EncryptionHelper.EncryptText(model.Password);
 
             //var dhWebSiteDatabase = new DHWebSiteDatabase();
-            var adminBll = new AdminsBll();
+            var adminUserBll = new AdminUserBll();
 
             if (Session["validCode"] == null)
             {
@@ -61,7 +61,7 @@ namespace DHGame.WebAdmin.Controllers
             if (ModelState.IsValid)
             {
                 //var user =dhWebSiteDatabase.Admins.FirstOrDefault(p => p.LoginName.Equals(model.UserName, StringComparison.Ordinal) && p.LoginPwd.Equals(encPwc, StringComparison.Ordinal));
-                var user = adminBll.GetAdminUser(model.UserName, encPwc);
+                var user = adminUserBll.GetAdminUser(model.UserName, encPwc);
 
                 if (user != null)
                 {
