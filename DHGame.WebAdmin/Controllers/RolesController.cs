@@ -1,0 +1,84 @@
+﻿using DHGame.Entity.DHWebSiteDB;
+using DHGame.Logic;
+using DHGame.Utility;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Web;
+using System.Web.Mvc;
+
+namespace DHGame.WebAdmin.Controllers
+{
+    public class RolesController : BaseController
+    {
+        readonly RolesBll rolesBll = new RolesBll();
+        //
+        // GET: /Roles/
+
+        public ActionResult Index()
+        {
+            int pageNum = WebUtil.Get("pageNum", 1);
+            int numPerPage = WebUtil.Get("numPerPage", PageSize);
+            string orderField = WebUtil.Get("orderField", "Id");
+            bool isAsc = (WebUtil.Get("orderDirection", "asc") == "asc") ? true : false;
+            Expression<Func<Roles, bool>> whereLambda = c => 1 == 1;
+            Expression<Func<Roles, string>> orderByExpression = c => c.Id.ToString();
+            var list = rolesBll.PageList(pageNum, numPerPage, whereLambda, orderByExpression, isAsc, out Total);
+            ViewBag.pageNum = pageNum;
+            ViewBag.numPerPage = numPerPage;
+            ViewBag.orderField = orderField;
+            ViewBag.orderDirection = (isAsc == true ? "asc" : "desc");
+            ViewBag.Total = Total;
+            ViewBag.pagenumshown = Utility.Utils.GetPageCount(Total, numPerPage);
+            return View(list);
+        }
+        [HttpPost]
+        public ActionResult Index(FormCollection form)
+        {
+            int pageNum = WebUtil.Get("pageNum", 1);
+            int numPerPage = WebUtil.Get("numPerPage", PageSize);
+            string orderField = WebUtil.Get("orderField", "Id");
+            bool isAsc = (WebUtil.Get("orderDirection", "asc") == "asc") ? true : false;
+
+            int roleid = WebUtil.Get("RoleId", 0);
+            int enable = WebUtil.Get("Enable", -1);
+            int selectUser = WebUtil.Get("selectUser", 0);
+            string keywords = WebUtil.Get("keywords", "");
+
+            WhereHelper<Roles> whereLambda = new WhereHelper<Roles>();
+            Expression<Func<Roles, string>> orderByExpression = c => c.Id.ToString();
+            switch (orderField)
+            {
+                case "RoleName":
+                    orderByExpression = c => c.RoleName;
+                    break;
+                case "RoleDesc":
+                    orderByExpression = c => c.RoleDesc;
+                    break;
+                case "Nullity":
+                    orderByExpression = c => c.Nullity.ToString();
+                    break;
+                case "CreateTime":
+                    orderByExpression = c => c.CreateTime.ToString();
+                    break;
+                default:
+                    break;
+            }
+
+            var list = rolesBll.PageList(pageNum, numPerPage, whereLambda.GetExpression(), orderByExpression, isAsc, out Total);
+            ViewBag.pageNum = pageNum;
+            ViewBag.numPerPage = numPerPage;
+            ViewBag.orderField = orderField;
+            ViewBag.orderDirection = (isAsc == true ? "asc" : "desc");
+            ViewBag.Total = Total;
+            ViewBag.pagenumshown = Utility.Utils.GetPageCount(Total, numPerPage);
+            return View(list);
+        }
+        public ActionResult Edit(int Id)
+        {
+            return View();
+        }
+
+    }
+}

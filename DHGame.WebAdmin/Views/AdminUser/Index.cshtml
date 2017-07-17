@@ -3,12 +3,6 @@
     //ViewBag.Title = "Index";
     Layout = null;
 }
-@*<form id="pagerForm" method="post" action="#rel#">
-    <input type="hidden" name="pageNum" value="1" />
-    <input type="hidden" name="numPerPage" value="${model.numPerPage}" />
-    <input type="hidden" name="orderField" value="${param.orderField}" />
-    <input type="hidden" name="orderDirection" value="${param.orderDirection}" />
-</form>*@
 <form id="pagerForm" method="post" action="#rel#">
         <input type="hidden" name="pageNum" value="@ViewBag.pageNum" />
         <input type="hidden" name="numPerPage" value="@ViewBag.numPerPage" />
@@ -26,14 +20,14 @@
                         <option value="1">超级管理员</option>
                     </select>
                 </li>
-                @*<li>
+                <li>
                     <label>账号状态：</label>
                     <select class="combox" name="Enable">
                         <option value="-1">所有</option>
                         <option value="0">禁用</option>
                         <option value="1">正常</option>
                     </select>
-                </li>*@
+                </li>
                 <li>
                     <select class="combox" name="selectUser">
                         <option value="0">登录账户</option>
@@ -41,20 +35,6 @@
                     </select>：
                     <input type="text" name="keywords" value="" />
                 </li>
-                @*<li>
-                    <label>我的客户：</label>
-                    <input type="text" name="keywords" value="" />
-                </li>
-                <li>
-                    <select class="combox" name="province">
-                        <option value="">所有省市</option>
-                        <option value="北京">北京</option>
-                        <option value="上海">上海</option>
-                        <option value="天津">天津</option>
-                        <option value="重庆">重庆</option>
-                        <option value="广东">广东</option>
-                    </select>
-                </li>*@
             </ul>
             <div class="subBar">
                 <ul>
@@ -79,18 +59,8 @@
     </div>
     <table class="table" width="1200" layouth="138">
         <thead>
-            @*<tr>
-                <th width="20" orderfield="accountNo" class="asc">Id</th>
-                <th width="80" orderfield="accountName" class="desc">登录账户</th>
-                <th width="80" orderfield="accountType">真实姓名</th>
-                <th width="130" orderfield="accountCert">用户角色</th>
-                <th width="60" align="center" orderfield="accountLevel">是否禁用</th>
-                <th width="70">上次登录日期</th>
-                <th width="70">上次登录IP</th>
-                <th width="70">操作</th>
-            </tr>*@
             <tr>
-                <th width="30">操作</th>
+                <th width="30" align="center">操作</th>
                 <th width="20" align="center" orderfield="Id" @(ViewBag.orderField == "Id" ? "class=" + ViewBag.orderDirection : "")>Id</th>
                 <th width="80" orderfield="LoginName" @(ViewBag.orderField == "LoginName" ? "class=" + ViewBag.orderDirection : "")>登录账户</th>
                 <th width="80" orderfield="RealName" @(ViewBag.orderField == "RealName" ? "class=" + ViewBag.orderDirection : "")>真实姓名</th>
@@ -106,7 +76,7 @@
             {
             <tr target="sid_user" rel="@item.Id">
                 <td>
-                    <a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
+                    @*<a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>*@
                     <a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
                 </td>
                 <td>@item.Id</td>
@@ -119,19 +89,6 @@
             </tr>
 
             }
-            @*<tr target="sid_user" rel="3">
-                <td>2</td>
-                <td>天津市华建装饰工程有限公司</td>
-                <td>联社营业部</td>
-                <td>29385739203816293</td>
-                <td>5级</td>
-                <td>政府机构</td>
-                <td>2009-05-21</td>
-                <td>
-                    <a title="删除" target="ajaxTodo" href="demo/common/ajaxDone.html?id=xxx" class="btnDel">删除</a>
-                    <a title="编辑" target="navTab" href="demo_page4.html?id=xxx" class="btnEdit">编辑</a>
-                </td>
-            </tr>*@
         </tbody>
     </table>
     <div class="panelBar">
@@ -143,7 +100,6 @@
                 <option value="100">100</option>
                 <option value="200">200</option>
             </select>
-            @*<span>条，共${totalCount}条</span>*@
             <span>条，共@(ViewBag.Total)条</span>
         </div>
 

@@ -47,15 +47,36 @@ namespace DHGame.WebAdmin.Controllers
             int selectUser = WebUtil.Get("selectUser", 0);
             string keywords = WebUtil.Get("keywords", "");
 
-            Expression<Func<Admins, bool>> whereLambda = null;
-            whereLambda = (c => (roleid == 0 || c.RoleId == roleid)
-                //&& (enable == -1 ||Convert.ToInt16(c.Enable) == Convert.ToInt16(enable))
-                &&(
-                    string.IsNullOrEmpty(keywords)
-                    || (selectUser==0 && c.LoginName==keywords)
-                    || (selectUser==1 && c.RealName==keywords)
-                   )
-                );
+            WhereHelper<Admins> whereLambda = new WhereHelper<Admins>();
+            if (roleid != 0)
+            {
+                whereLambda.Equal("RoleId", roleid, "and");
+            }
+            if (enable != -1)
+            {
+                whereLambda.Equal("Enable", (enable == 1), "and");
+            }
+            if (!string.IsNullOrEmpty(keywords))
+            {
+                if (selectUser == 0)
+                {
+                    whereLambda.Equal("LoginName", keywords, "and");
+                }
+                if (selectUser == 1)
+                {
+                    whereLambda.Equal("RealName", keywords, "and");
+                }
+            }
+
+            //Expression<Func<Admins, bool>> whereLambda = null;
+            //whereLambda = (c => (roleid == 0 || c.RoleId == roleid)
+            //    && (enable == -1 || c.Enable == (enable == 1))
+            //    && (
+            //        string.IsNullOrEmpty(keywords)
+            //        || (selectUser == 0 && c.LoginName == keywords)
+            //        || (selectUser == 1 && c.RealName == keywords)
+            //       )
+            //    );
 
             Expression<Func<Admins, string>> orderByExpression = c => c.Id.ToString();
             switch (orderField)
@@ -81,7 +102,7 @@ namespace DHGame.WebAdmin.Controllers
                 default:
                     break;
             }
-            var list = adminUserBll.PageList(pageNum, numPerPage, whereLambda, orderByExpression, isAsc, out Total);
+            var list = adminUserBll.PageList(pageNum, numPerPage, whereLambda.GetExpression(), orderByExpression, isAsc, out Total);
             ViewBag.pageNum = pageNum;
             ViewBag.numPerPage = numPerPage;
             ViewBag.orderField = orderField;

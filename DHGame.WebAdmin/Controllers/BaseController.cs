@@ -8,7 +8,7 @@ namespace DHGame.WebAdmin.Controllers
 {
     public class BaseController : Controller
     {
-        protected int PageSize = 100;
+        protected int PageSize = 20;
         protected int Total = 0;
 
 
