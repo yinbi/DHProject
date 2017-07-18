@@ -1,28 +1,28 @@
-﻿@model DHGame.Entity.DHWebSiteDB.Roles
+﻿@model DHGame.WebAdmin.Models.RolesModel
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = null;
 }
 <div class="pageContent">
-    <form method="post" action="/Roles/Edit" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+    <form method="post" action="/Roles/Create" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layouth="56">
             <p>
                 <label>Id：</label>
-                <input name="Id" type="text" size="30" value="@Model.Id" readonly="readonly" />
+                <input name="Id" type="text" size="30" value="" readonly="readonly" />
             </p>
             <p>
                 <label>角色名称：</label>
-                <input name="RoleName" class="required" type="text" size="30" value="@Model.RoleName" alt="请输入角色名称" />
+                <input name="RoleName" class="required" type="text" size="30" value="" alt="请输入角色名称" maxlength="30" />
             </p>
             <p>
                 <label>描述：</label>
-                <input name="RoleDesc" class="required" type="text" size="30" value="@Model.RoleDesc" alt="请填写描述信息" />
+                <input name="RoleDesc" class="required" type="text" size="30" value="" alt="请填写描述信息" maxlength="100" />
             </p>
             <p>
                 <label>是否停用：</label>
                 <label>
-                    <input type="radio" name="Nullity" value="false" @(Model.Nullity ? "" : "checked") />正常 
-                    <input type="radio" name="Nullity" value="true" @(Model.Nullity ? "checked" : "") />停用
+                    <input type="radio" name="Nullity" value="false" checked="checked" />正常
+                    <input type="radio" name="Nullity" value="true"  />停用
                 </label>
             </p>
         </div>

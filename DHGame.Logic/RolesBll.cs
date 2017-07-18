@@ -1,6 +1,7 @@
 ﻿using DHGame.Entity.DHWebSiteDB;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -26,6 +27,31 @@ namespace DHGame.Logic
                 return query.Skip((pageIndex - 1) * pageSize).Take(pageSize).
                         ToList();
             }
+        }
+        public Roles Find(int id)
+        {
+            return MyDb.Roles.Find(id);
+        }
+        public int Edit(Roles role)
+        {
+            var oldRole = MyDb.Roles.AsNoTracking().FirstOrDefault(p => p.Id == role.Id);
+            MyDb.Entry(role).State = EntityState.Modified;
+            return MyDb.SaveChanges();
+        }
+        public int Create(Roles role)
+        {
+            MyDb.Roles.Add(role);
+            return MyDb.SaveChanges();
+        }
+        public int Delete(int id)
+        {
+            var role = MyDb.Roles.AsNoTracking().FirstOrDefault(p => p.Id == id);
+            if (role != null)
+            {
+                MyDb.Roles.Remove(role);
+                return MyDb.SaveChanges();
+            }
+            return 0;
         }
     }
 }

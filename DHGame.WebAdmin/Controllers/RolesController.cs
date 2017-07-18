@@ -1,6 +1,7 @@
 ﻿using DHGame.Entity.DHWebSiteDB;
 using DHGame.Logic;
 using DHGame.Utility;
+using DHGame.WebAdmin.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace DHGame.WebAdmin.Controllers
             ViewBag.pagenumshown = Utility.Utils.GetPageCount(Total, numPerPage);
             return View(list);
         }
+
         [HttpPost]
         public ActionResult Index(FormCollection form)
         {
@@ -75,10 +77,37 @@ namespace DHGame.WebAdmin.Controllers
             ViewBag.pagenumshown = Utility.Utils.GetPageCount(Total, numPerPage);
             return View(list);
         }
-        public ActionResult Edit(int Id)
+        public ActionResult Edit(int id)
+        {
+            Roles role = rolesBll.Find(id);
+            return View(role);
+        }
+        [HttpPost]
+        public string Edit(Roles role)
+        {
+            if (ModelState.IsValid)
+            {
+                rolesBll.Edit(role);
+            }
+            ReturnMsg msg = new ReturnMsg { statusCode = "200", message = "操作成功", callbackType = "closeCurrent" };
+            return MyJson.Serialize<ReturnMsg>(msg);
+        }
+        public ActionResult Create()
         {
             return View();
         }
-
+        [HttpPost]
+        public string Create(Roles role)
+        {
+            rolesBll.Create(role);
+            ReturnMsg msg = new ReturnMsg { statusCode = "200", message = "操作成功", callbackType = "closeCurrent" };
+            return MyJson.Serialize<ReturnMsg>(msg);
+        }
+        public string Delete(int id)
+        {
+            rolesBll.Delete(id);
+            ReturnMsg msg = new ReturnMsg { statusCode = "200", message = "操作成功", callbackType = "closeCurrent" };
+            return MyJson.Serialize<ReturnMsg>(msg);
+        }
     }
 }
