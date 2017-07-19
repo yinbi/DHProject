@@ -96,3 +96,7 @@ SELECT * FROM DHWebSiteDB.dbo.RolesPermission
 
 SELECT * FROM DHWebSiteDB.dbo.Admins
 SELECT * FROM DHWebSiteDB.dbo.Roles
+SELECT * FROM DHWebSiteDB.dbo.Modules
+
+--INSERT INTO DHWebSiteDB.dbo.Modules(ParentId,Title,Controller,[Action],OrderNo,Nullity)
+--VALUES(0,'用户管理','','',0,0)

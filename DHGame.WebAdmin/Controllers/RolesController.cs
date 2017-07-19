@@ -106,7 +106,7 @@ namespace DHGame.WebAdmin.Controllers
         public string Delete(int id)
         {
             rolesBll.Delete(id);
-            ReturnMsg msg = new ReturnMsg { statusCode = "200", message = "操作成功", callbackType = "closeCurrent" };
+            ReturnMsg msg = new ReturnMsg { statusCode = "200", message = "操作成功", callbackType = "" };
             return MyJson.Serialize<ReturnMsg>(msg);
         }
     }

@@ -45,7 +45,7 @@ namespace DHGame.Logic
         }
         public int Delete(int id)
         {
-            var role = MyDb.Roles.AsNoTracking().FirstOrDefault(p => p.Id == id);
+            var role = MyDb.Roles.FirstOrDefault(p => p.Id == id);
             if (role != null)
             {
                 MyDb.Roles.Remove(role);
