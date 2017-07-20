@@ -910,6 +910,7 @@
     <Content Include="Views\AdminUser\Edit.cshtml" />
     <Content Include="Views\Modules\Index1.cshtml" />
     <Content Include="Views\Modules\Index.cshtml" />
+    <Content Include="Views\Modules\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
