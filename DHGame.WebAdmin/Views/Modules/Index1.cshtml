@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+@*<link href="/Content/admin.css" rel="stylesheet" type="text/css" />*@
+@*<script type="text/javascript" src="/Scripts/jquery.min.js"></script>
+<script type="text/javascript" src="/Scripts/forms.func.js"></script>*@
+<form id="pagerForm" method="post" action="#rel#">
+    <input type="hidden" name="pageNum" value="@ViewBag.pageNum" />
+    <input type="hidden" name="numPerPage" value="@ViewBag.numPerPage" />
+    <input type="hidden" name="orderField" value="@ViewBag.orderField" />
+    <input type="hidden" name="orderDirection" value="@ViewBag.orderDirection" />
+</form>
+<div class="pageHeader">
+    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="/Roles/Index" method="post">
+        <div class="searchBar">
+            <div class="subBar">
+                <ul>
+                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="pageContent">
+    <div class="panelBar">
+        <ul class="toolBar">
+            <li><a class="add" href="/Roles/Create" target="dialog"><span>添加</span></a></li>
+            @*<li><a class="edit" href="/Roles/Edit/{sid_user}" target="dialog" warn="请选择一个用户"><span>修改</span></a></li>*@
+            <li class="line">line</li>
+        </ul>
+    </div>
+    <table class="table" width="1200" layouth="138">
+        
+            <tr>
+                <th width="30" align="center">操作</th>
+                <th width="20" align="center" orderfield="Id">Id</th>
+                <th width="80" orderfield="RoleName">角色名称</th>
+                <th width="80" orderfield="RoleDesc">描述</th>
+                <th width="60" orderfield="Nullity">是否停用</th>
+                <th width="70" orderfield="CreateTime">创建时间</th>
+            </tr>
+        
+        </table>
+    <table class="table" width="1200" layouth="138">
+        
+            <tr target="sid_user" rel="1">
+                <td>
+                    <a title="删除" target="ajaxTodo" href="/Roles/Delete/1" class="btnDel">删除</a>
+                    <a title="编辑" target="dialog" href="/Roles/Edit/1" class="btnEdit">编辑</a>
+                </td>
+                <td>aa</td>
+                <td>bb</td>
+                <td>cc</td>
+                <td>dd</td>
+                <td>aa</td>
+            </tr>
+        
+     </table>
+    <table class="table" width="1200" layouth="138">
+        
+            <tr target="sid_user" rel="1">
+                <td>
+                    <a title="删除" target="ajaxTodo" href="/Roles/Delete/1" class="btnDel">删除</a>
+                    <a title="编辑" target="dialog" href="/Roles/Edit/1" class="btnEdit">编辑</a>
+                </td>
+                <td>aa</td>
+                <td>bb</td>
+                <td>cc</td>
+                <td>dd</td>
+                <td>aa</td>
+            </tr>
+        
+    </table>
+
+        @*<table class="table" width="1200" layouth="138">
+            <thead>
+                <tr>
+                    <th width="30" align="center">操作</th>
+                    <th width="20" align="center" orderfield="Id">Id</th>
+                    <th width="80" orderfield="RoleName">角色名称</th>
+                    <th width="80" orderfield="RoleDesc">描述</th>
+                    <th width="60" orderfield="Nullity">是否停用</th>
+                    <th width="70" orderfield="CreateTime">创建时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr target="sid_user" rel="1">
+                    <td>
+                        <a title="删除" target="ajaxTodo" href="/Roles/Delete/1" class="btnDel">删除</a>
+                        <a title="编辑" target="dialog" href="/Roles/Edit/1" class="btnEdit">编辑</a>
+                    </td>
+                    <td>aa</td>
+                    <td>bb</td>
+                    <td>cc</td>
+                    <td>dd</td>
+                    <td>aa</td>
+                </tr>
+            </tbody>
+        </table>*@
+
+        <div class="panelBar">
+            <div class="pages">
+                <span>显示</span>
+                <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                </select>
+                <span>条，共@(ViewBag.Total)条</span>
+            </div>
+
+            <div class="pagination" targettype="navTab" totalcount="200" numperpage="20" pagenumshown="10" currentpage="1"></div>
+            @*<div class="pagination" targettype="navTab" totalcount="@(ViewBag.Total)" numperpage="@(ViewBag.numPerPage)" pagenumshown="@(ViewBag.pagenumshown)" currentpage="@(ViewBag.pageNum)"></div>*@
+
+            @*</div>*@
+        </div>

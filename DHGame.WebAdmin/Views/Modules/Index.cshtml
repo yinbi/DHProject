@@ -1,76 +1,271 @@
 ﻿@{
-    ViewBag.Title = "Index";
     Layout = null;
 }
-<form id="pagerForm" method="post" action="#rel#">
-    <input type="hidden" name="pageNum" value="@ViewBag.pageNum" />
-    <input type="hidden" name="numPerPage" value="@ViewBag.numPerPage" />
-    <input type="hidden" name="orderField" value="@ViewBag.orderField" />
-    <input type="hidden" name="orderDirection" value="@ViewBag.orderDirection" />
-</form>
-<div class="pageHeader">
-    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="/Roles/Index" method="post">
-        <div class="searchBar">
-            <div class="subBar">
-                <ul>
-                    <li><div class="buttonActive"><div class="buttonContent"><button type="submit">检索</button></div></div></li>
-                </ul>
-            </div>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />*@
+    <title>导航菜单管理</title>
+    <link href="/Content/admin.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/Scripts/forms.func.js"></script>
+
+</head>
+<body>
+    <div class="topToolbar"> <span class="title">导航菜单管理</span> <a href="javascript:location.reload();" class="reload">刷新</a></div>
+    <form name="form" id="form" method="post" action="">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+            <tr align="left" class="head">
+                <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid" onclick="CheckAll(this.checked);"></td>
+                <td width="3%">ID</td>
+                <td width="27%">导航名称</td>
+                <td width="15%">跳转链接</td>
+                <td width="15%" align="center">排序</td>
+                <td width="25%" class="endCol">操作</td>
+            </tr>
+        </table>
+        <div rel="rowpid_0">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="1" /></td>
+                    <td width="3%">1					<input type="hidden" name="id[]" id="id[]" value="1" /></td>
+                    <td width="27%"><span class="minusSign" id="rowid_1" onclick="DisplayRows(1);">主菜单</span></td>
+                    <td width="15%" class="number">#</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=1&parentid=0&orderid=1" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="1" />
+                        <a href="nav_save.php?action=down&id=1&parentid=0&orderid=1" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=1">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=1&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=1">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=1" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="3" /></td>
+                    <td width="3%">3					<input type="hidden" name="id[]" id="id[]" value="3" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">关于我们</span></td>
+                    <td width="15%" class="number">about.php</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=3&parentid=1&orderid=2" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="2" />
+                        <a href="nav_save.php?action=down&id=3&parentid=1&orderid=2" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=3">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=3&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=3">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=3" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="2" /></td>
+                    <td width="3%">2					<input type="hidden" name="id[]" id="id[]" value="2" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">首　页</span></td>
+                    <td width="15%" class="number">index.php</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=2&parentid=1&orderid=3" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="3" />
+                        <a href="nav_save.php?action=down&id=2&parentid=1&orderid=3" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=2">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=2&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=2">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=2" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="4" /></td>
+                    <td width="3%">4					<input type="hidden" name="id[]" id="id[]" value="4" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">新闻中心</span></td>
+                    <td width="15%" class="number">news.php</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=4&parentid=1&orderid=4" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="4" />
+                        <a href="nav_save.php?action=down&id=4&parentid=1&orderid=4" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=4">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=4&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=4">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=4" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="5" /></td>
+                    <td width="3%">5					<input type="hidden" name="id[]" id="id[]" value="5" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">产品展示</span></td>
+                    <td width="15%" class="number">product.php</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=5&parentid=1&orderid=5" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="5" />
+                        <a href="nav_save.php?action=down&id=5&parentid=1&orderid=5" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=5">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=5&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=5">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=5" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="10" /></td>
+                    <td width="3%">10					<input type="hidden" name="id[]" id="id[]" value="10" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">笔记本电脑</span></td>
+                    <td width="15%" class="number">product.php?cid=6</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=10&parentid=5&orderid=10" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="10" />
+                        <a href="nav_save.php?action=down&id=10&parentid=5&orderid=10" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=10">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=10&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=10">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=10" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="11" /></td>
+                    <td width="3%">11					<input type="hidden" name="id[]" id="id[]" value="11" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">智能手机</span></td>
+                    <td width="15%" class="number">product.php?cid=7</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=11&parentid=5&orderid=11" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="11" />
+                        <a href="nav_save.php?action=down&id=11&parentid=5&orderid=11" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=11">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=11&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=11">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=11" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="6" /></td>
+                    <td width="3%">6					<input type="hidden" name="id[]" id="id[]" value="6" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">案例展示</span></td>
+                    <td width="15%" class="number">case.php</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=6&parentid=1&orderid=6" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="6" />
+                        <a href="nav_save.php?action=down&id=6&parentid=1&orderid=6" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=6">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=6&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=6">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=6" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="7" /></td>
+                    <td width="3%">7					<input type="hidden" name="id[]" id="id[]" value="7" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">人才招聘</span></td>
+                    <td width="15%" class="number">join.php</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=7&parentid=1&orderid=7" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="7" />
+                        <a href="nav_save.php?action=down&id=7&parentid=1&orderid=7" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=7">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=7&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=7">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=7" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="8" /></td>
+                    <td width="3%">8					<input type="hidden" name="id[]" id="id[]" value="8" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">客户留言</span></td>
+                    <td width="15%" class="number">message.php</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=8&parentid=1&orderid=8" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="8" />
+                        <a href="nav_save.php?action=down&id=8&parentid=1&orderid=8" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=8">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=8&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=8">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=8" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="9" /></td>
+                    <td width="3%">9					<input type="hidden" name="id[]" id="id[]" value="9" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">联系我们</span></td>
+                    <td width="15%" class="number">contact.php</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=9&parentid=1&orderid=9" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="9" />
+                        <a href="nav_save.php?action=down&id=9&parentid=1&orderid=9" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=9">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=9&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=9">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=9" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="12" /></td>
+                    <td width="3%">12					<input type="hidden" name="id[]" id="id[]" value="12" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">更多</span></td>
+                    <td width="15%" class="number">javascript:;</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=12&parentid=1&orderid=12" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="12" />
+                        <a href="nav_save.php?action=down&id=12&parentid=1&orderid=12" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=12">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=12&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=12">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=12" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="13" /></td>
+                    <td width="3%">13					<input type="hidden" name="id[]" id="id[]" value="13" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">软件下载</span></td>
+                    <td width="15%" class="number">soft.php</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=13&parentid=12&orderid=13" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="13" />
+                        <a href="nav_save.php?action=down&id=13&parentid=12&orderid=13" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=13">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=13&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=13">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=13" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
+        </div>
+        <div rel="rowpid_1">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                <tr align="left" class="dataTr">
+                    <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" value="14" /></td>
+                    <td width="3%">14					<input type="hidden" name="id[]" id="id[]" value="14" /></td>
+                    <td width="27%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">商品展示</span></td>
+                    <td width="15%" class="number">goods.php</td>
+                    <td width="15%" align="center">
+                        <a href="nav_save.php?action=up&id=14&parentid=12&orderid=14" class="leftArrow" title="提升排序"></a>
+                        <input type="text" name="orderid[]" id="orderid[]" class="inputls" value="14" />
+                        <a href="nav_save.php?action=down&id=14&parentid=12&orderid=14" class="rightArrow" title="下降排序"></a>
+                    </td>
+                    <td width="25%" class="action endCol"><span><a href="nav_add.php?id=14">添加子导航</a></span> | <span><a href="nav_save.php?action=check&id=14&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="nav_update.php?id=14">修改</a></span> | <span class="nb"><a href="nav_save.php?action=del&id=14" onclick="return ConfDel(2);">删除</a></span></td>
+                </tr>
+            </table>
         </div>
     </form>
-</div>
-<div class="pageContent">
-    <div class="panelBar">
-        <ul class="toolBar">
-            <li><a class="add" href="/Roles/Create" target="dialog"><span>添加</span></a></li>
-            <li><a class="edit" href="/Roles/Edit/{sid_user}" target="dialog" warn="请选择一个用户"><span>修改</span></a></li>
-            <li class="line">line</li>
-            @*<li><a class="icon" href="demo/common/dwz-team.xls" target="dwzExport" targettype="navTab" title="实要导出这些记录吗?"><span>导出EXCEL</span></a></li>*@
-        </ul>
+    <div class="bottomToolbar"> <span class="selArea"><span>选择：</span> <a href="javascript:CheckAll(true);">全部</a> - <a href="javascript:CheckAll(false);">无</a> - <a href="javascript:DelAll('nav_save.php');" onclick="return ConfDelAll(1);">删除</a>　<span>操作：</span><a href="javascript:UpOrderID('nav_save.php');">排序</a> - <a href="javascript:ShowAllRows();">展开</a> - <a href="javascript:HideAllRows();">隐藏</a></span> <a href="nav_add.php" class="dataBtn">添加导航菜单</a> </div>
+    <div class="page">
+        <div class="pageText">共有<span>14</span>条记录</div>
     </div>
-    <table class="table" width="1200" layouth="138">
-        <thead>
-            <tr>
-                <th width="30" align="center">操作</th>
-                <th width="20" align="center" orderfield="Id" @(ViewBag.orderField == "Id" ? "class=" + ViewBag.orderDirection : "")>Id</th>
-                <th width="80" orderfield="RoleName" @(ViewBag.orderField == "RoleName" ? "class=" + ViewBag.orderDirection : "")>角色名称</th>
-                <th width="80" orderfield="RoleDesc" @(ViewBag.orderField == "RoleDesc" ? "class=" + ViewBag.orderDirection : "")>描述</th>
-                <th width="60" orderfield="Nullity" @(ViewBag.orderField == "Nullity" ? "class=" + ViewBag.orderDirection : "")>是否停用</th>
-                <th width="70" orderfield="CreateTime" @(ViewBag.orderField == "CreateTime" ? "class=" + ViewBag.orderDirection : "")>创建时间</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr target="sid_user" rel="@item.Id">
-                    <td>
-                        <a title="删除" target="ajaxTodo" href="/Roles/Delete/@item.Id" class="btnDel">删除</a>
-                        <a title="编辑" target="dialog" href="/Roles/Edit/@item.Id" class="btnEdit">编辑</a>
-                    </td>
-                    <td>@item.Id</td>
-                    <td>@item.RoleName</td>
-                    <td>@item.RoleDesc</td>
-                    <td>@(item.Nullity == false ? "正常" : "禁用")</td>
-                    <td>@item.CreateTime</td>
-                </tr>
-
-            }
-        </tbody>
-    </table>
-    <div class="panelBar">
-        <div class="pages">
-            <span>显示</span>
-            <select class="combox" name="numPerPage" onchange="navTabPageBreak({numPerPage:this.value})">
-                <option value="20">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                <option value="200">200</option>
-            </select>
-            <span>条，共@(ViewBag.Total)条</span>
+    <div class="quickToolbar">
+        <div class="qiuckWarp">
+            <div class="quickArea">
+                <span class="selArea"><span>选择：</span> <a href="javascript:CheckAll(true);">全部</a> - <a href="javascript:CheckAll(false);">无</a> - <a href="javascript:DelAll('nav_save.php');" onclick="return ConfDelAll(1);">删除</a>　<span>操作：</span><a href="javascript:UpOrderID('nav_save.php');">排序</a> - <a href="javascript:ShowAllRows();">展开</a> - <a href="javascript:HideAllRows();">隐藏</a></span> <a href="nav_add.php" class="dataBtn">添加导航菜单</a><span class="pageSmall">
+                    <div class="pageText">共有<span>14</span>条记录</div>
+                </span>
+            </div>
+            <div class="quickAreaBg"></div>
         </div>
-
-        @*<div class="pagination" targettype="navTab" totalcount="200" numperpage="20" pagenumshown="10" currentpage="1"></div>*@
-        <div class="pagination" targettype="navTab" totalcount="@(ViewBag.Total)" numperpage="@(ViewBag.numPerPage)" pagenumshown="@(ViewBag.pagenumshown)" currentpage="@(ViewBag.pageNum)"></div>
-
     </div>
-</div>
+
+</body>
+</html>
