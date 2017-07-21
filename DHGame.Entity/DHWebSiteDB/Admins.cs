@@ -25,6 +25,7 @@ namespace DHGame.Entity.DHWebSiteDB
         public string LastLoginIp { get; set; }
         public int ErrNum { get; set; }
         public bool Enable { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreateTime { get; set; }
     }
 }

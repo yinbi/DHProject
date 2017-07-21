@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<DHGame.Entity.DHWebSiteDB.Modules>
+@{
     Layout = null;
 }
 
@@ -12,7 +13,47 @@
     <link href="/Content/admin.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="/Scripts/forms.func.js"></script>
-
+    <script type="text/javascript" src="/Scripts/layer_mobile/layer.js"></script>
+    <script type="text/javascript" src="/Scripts/common.js"></script>
+    @*<script type="text/javascript">
+        function test() {
+            //return false;
+            return confirm("确定删除吗?");
+            return Alert.confirm("确定删除吗?", function () { return true; });
+        }
+        var orderBuy = new Object({
+            del: function (id) {
+                Alert.confirm('确定删除吗?', orderBuy.surePay(id));
+            },
+            surePay: function (id) {
+                if (!flagOn) return;
+                flagOn = false;
+                $.ajax({
+                    type: "GET",
+                    url: "/Modules/BuyVip",
+                    //data: data,
+                    dataType: "json",
+                    beforeSend: function () {
+                        banksafeAlert.loding('购买中...');
+                    },
+                    success: function (result) {
+                        flagOn = true;
+                        layer.closeAll('loading');
+                        if (result.Err == "ok") {
+                            banksafeAlert.sureAlert('购买成功', orderBuy.gotoUrl);
+                        }
+                        else {
+                            banksafeAlert.alert(result.Err);
+                        }
+                    },
+                    error: function (e) { flagOn = true; }
+                });
+            },
+            gotoUrl: function () {
+                window.location.href = '/RedPacket/Index';
+            }
+        });
+    </script>*@
 </head>
 <body>
     <div class="topToolbar"> <span class="title">模块管理</span> <a href="javascript:location.reload();" class="reload">刷新</a></div>
@@ -28,7 +69,9 @@
                 <td width="32%" class="endCol">操作</td>
             </tr>
         </table>
-        <div rel="rowpid_0">
+         @*@ViewBag.TreeHtml*@
+        @Html.Raw(ViewBag.TreeHtml)
+        @*<div rel="rowpid_0">
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
                 <tr align="left" class="dataTr">
                     <td width="5%" height="36" class="firstCol"><input type="checkbox" name="checkid[]" id="checkid[]" value="2" /></td>
@@ -231,12 +274,24 @@
                     <td width="32%" class="action endCol"><span><a href="infoclass_add.php?infotype=3&id=11">添加子栏目</a></span> | <span><a href="infoclass_save.php?action=check&id=11&checkinfo=true" title="点击进行显示与隐藏操作">显示</a></span> | <span><a href="infoclass_update.php?id=11">修改</a></span> | <span class="nb"><a href="infoclass_save.php?action=delclass&id=11" onclick="return ConfDel(2);">删除</a></span></td>
                 </tr>
             </table>
-        </div>
+        </div>*@
 
     </form>
-    <div class="bottomToolbar"> <span class="selArea"><span>选择：</span> <a href="javascript:CheckAll(true);">全部</a> - <a href="javascript:CheckAll(false);">无</a> - <a href="javascript:SubUrlParam('infoclass_save.php?action=delallclass');" onclick="return ConfDelAll(1);">删除</a>　<span>操作：</span><a href="javascript:UpOrderID('infoclass_save.php');">排序</a> - <a href="javascript:ShowAllRows();">展开</a> - <a href="javascript:HideAllRows();">隐藏</a></span> <a href="infoclass_add.php" class="dataBtn">添加网站栏目</a> </div>
+    <div class="bottomToolbar"> 
+    <span class="selArea">
+        <span>选择：</span> 
+        <a href="javascript:CheckAll(true);">全部</a> - 
+        <a href="javascript:CheckAll(false);">无</a> 
+        @*- <a href="javascript:void(0);;" onclick="return ConfDelAll(1);">删除</a>*@　
+        <span>操作：</span>
+        @*<a href="javascript:void(0);">排序</a>  -*@ 
+        <a href="javascript:ShowAllRows();">展开</a>  - 
+        <a href="javascript:HideAllRows();">隐藏</a>
+    </span>
+        <a href="/Modules/Create/-1" target="_self" class="dataBtn">添加菜单模块</a> 
+    </div>
     <div class="page">
-        <div class="pageText">共有<span>13</span>条记录</div>
+        <div class="pageText">共有<span>@Model.Count</span>条记录</div>
     </div>
 
     <div class="quickToolbar">

@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AdminUserBll.cs" />
     <Compile Include="LogicBase.cs" />
+    <Compile Include="ModulesBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesBll.cs" />
   </ItemGroup>

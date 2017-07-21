@@ -1,0 +1,94 @@
+﻿@model DHGame.Entity.DHWebSiteDB.Modules
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>修改菜单模块</title>
+    <link href="/Content/admin.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="formHeader"> <span class="title">修改菜单模块</span> <a href="javascript:location.reload();" class="reload">刷新</a> </div>
+    <form name="form" id="pagerForm" method="post" action="/Modules/Edit"> @*onsubmit="return cfm_infoclass();"*@
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="formTable">
+            @*<tr>
+                    <td width="25%" height="40" align="right">栏目类型：</td>
+                    <td width="380">
+                        <select name="infotype" id="infotype">
+                            <option value="0" selected="selected">单页</option>
+                            <option value="1">列表</option>
+                            <option value="2">图片</option>
+                            <option value="3">下载</option>
+                            <option value="4">商品</option>
+                        </select>
+                        <span class="maroon">*</span>
+                    </td>
+                    <td><span class="cnote">带<span class="maroon">*</span>号表示为必填项</span></td>
+                </tr>*@
+            <tr>
+                <td height="40" align="right">Id：</td>
+                <td><input type="text" name="Id" id="orderid" class="inputs" value="@Model.Id" readonly="readonly" /></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="25%" height="40" align="right">所属菜单：</td>
+                <td width="380">
+                    <select name="ParentId" id="parentid">
+                        @Html.Raw(ViewBag.TreeSelectHtml)
+                    </select>
+                    <span class="maroon">*</span>
+                </td>
+                <td><span class="cnote">带<span class="maroon">*</span>号表示为必填项</span></td>
+            </tr>
+            <tr>
+                <td height="40" align="right">菜单名称：</td>
+                <td>
+                    <input name="Title" type="text" id="classname" value="@Model.Title" class="input" />
+                    <span class="maroon">*</span>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td height="40" align="right">控制器：</td>
+                <td>
+                    <input name="Controller" type="text" id="classname" value="@Model.Controller" class="input" />
+                    <span class="maroon">*</span>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td height="40" align="right">视图：</td>
+                <td><input name="Action" type="text" id="linkurl" class="input" value="@Model.Action" /></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td height="40" align="right">排列排序：</td>
+                <td><input type="text" name="OrderNo" id="orderid" class="inputs" value="@Model.OrderNo" /></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="nb">
+                <td height="40" align="right">隐藏菜单：</td>
+                <td>
+                    <input type="radio" name="Nullity" value="false" @(Model.Nullity ? "" : "checked") />
+                    显示&nbsp;
+                    <input type="radio" name="Nullity" value="true" @(Model.Nullity ? "checked" : "") />
+                    隐藏
+                </td>
+                <td>&nbsp;@ViewBag.info</td>
+            </tr>
+        </table>
+        <div class="formSubBtn">
+            <input type="submit" class="submit" value="提交" />
+            <input type="button" class="back" value="返回" onclick="history.go(-1);" />
+            @*<input type="hidden" name="action" id="action" value="update" />
+            <input type="hidden" name="id" id="id" value="2" />
+            <input type="hidden" name="repid" id="repid" value="0" />*@
+        </div>
+    </form>
+
+</body>
+</html>
