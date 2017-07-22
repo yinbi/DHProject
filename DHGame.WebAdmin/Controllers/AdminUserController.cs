@@ -1,6 +1,7 @@
 ﻿using DHGame.Entity.DHWebSiteDB;
 using DHGame.Logic;
 using DHGame.Utility;
+using DHGame.WebAdmin.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace DHGame.WebAdmin.Controllers
     public class AdminUserController : BaseController
     {
         readonly AdminUserBll adminUserBll = new AdminUserBll();
+        readonly RolesBll rolesBll = new RolesBll();
         //
         // GET: /AdminUser/
 
@@ -31,6 +33,8 @@ namespace DHGame.WebAdmin.Controllers
             ViewBag.orderDirection = (isAsc == true ? "asc" : "desc");
             ViewBag.Total = Total;
             ViewBag.pagenumshown = Utility.Utils.GetPageCount(Total, numPerPage);
+            string _html = rolesBll.CreateAllRolsSelect(0);
+            ViewBag.RolesSelectHtml = _html;
             return View(list);
         }
 
@@ -109,10 +113,32 @@ namespace DHGame.WebAdmin.Controllers
             ViewBag.orderDirection = (isAsc == true ? "asc" : "desc");
             ViewBag.Total = Total;
             ViewBag.pagenumshown = Utility.Utils.GetPageCount(Total, numPerPage);
+            string _html = rolesBll.CreateAllRolsSelect(roleid);
+            ViewBag.RolesSelectHtml = _html;
             return View(list);
             //string str = "{\"statusCode\":\"200\", \"message\":\"操作成功\",\"navTabId\":\"\", \"rel\":\"\",  \"callbackType\":\"closeCurrent\",\"forwardUrl\":\"\"}";
             //return Json(str);
         }
+
+        public ActionResult Edit(int id)
+        {
+            Admins user = adminUserBll.Find(id);
+            string _html = rolesBll.CreateAllRolsSelect(user.RoleId);
+            ViewBag.RolesSelectHtml = _html;
+            return View(user);
+        }
+
+        [HttpPost]
+        public string Edit(Admins user)
+        {
+            if (ModelState.IsValid)
+            {
+                adminUserBll.Edit(user);
+            }
+            ReturnMsg msg = new ReturnMsg { statusCode = "200", message = "操作成功", callbackType = "closeCurrent" };
+            return MyJson.Serialize<ReturnMsg>(msg);
+        }
+        
 
     }
 }

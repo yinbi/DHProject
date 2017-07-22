@@ -15,45 +15,6 @@
     <script type="text/javascript" src="/Scripts/forms.func.js"></script>
     <script type="text/javascript" src="/Scripts/layer_mobile/layer.js"></script>
     <script type="text/javascript" src="/Scripts/common.js"></script>
-    @*<script type="text/javascript">
-        function test() {
-            //return false;
-            return confirm("确定删除吗?");
-            return Alert.confirm("确定删除吗?", function () { return true; });
-        }
-        var orderBuy = new Object({
-            del: function (id) {
-                Alert.confirm('确定删除吗?', orderBuy.surePay(id));
-            },
-            surePay: function (id) {
-                if (!flagOn) return;
-                flagOn = false;
-                $.ajax({
-                    type: "GET",
-                    url: "/Modules/BuyVip",
-                    //data: data,
-                    dataType: "json",
-                    beforeSend: function () {
-                        banksafeAlert.loding('购买中...');
-                    },
-                    success: function (result) {
-                        flagOn = true;
-                        layer.closeAll('loading');
-                        if (result.Err == "ok") {
-                            banksafeAlert.sureAlert('购买成功', orderBuy.gotoUrl);
-                        }
-                        else {
-                            banksafeAlert.alert(result.Err);
-                        }
-                    },
-                    error: function (e) { flagOn = true; }
-                });
-            },
-            gotoUrl: function () {
-                window.location.href = '/RedPacket/Index';
-            }
-        });
-    </script>*@
 </head>
 <body>
     <div class="topToolbar"> <span class="title">模块管理</span> <a href="javascript:location.reload();" class="reload">刷新</a></div>

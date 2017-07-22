@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using DHGame.Entity.DHWebSiteDB;
+using System.Data.Entity;
 
 namespace DHGame.Logic
 {
@@ -35,6 +36,21 @@ namespace DHGame.Logic
         {
             return MyDb.Admins.FirstOrDefault(p => p.LoginName.Equals(loginName, StringComparison.Ordinal) && p.LoginPwd.Equals(loginPwd, StringComparison.Ordinal));
             //return MyDb.Admins.Include("Roles").FirstOrDefault(p => p.LoginName.Equals(loginName, StringComparison.Ordinal) && p.LoginPwd.Equals(loginPwd, StringComparison.Ordinal));
+        }
+        public Admins Find(int id)
+        {
+            return MyDb.Admins.Find(id);
+        }
+        public int Edit(Admins admin)
+        {
+            Admins oldAdmin = MyDb.Admins.AsNoTracking().FirstOrDefault(p => p.Id == admin.Id);
+            oldAdmin.LoginName = admin.LoginName;
+            oldAdmin.RealName = admin.RealName;
+            oldAdmin.RoleId = admin.RoleId;
+            oldAdmin.Enable = admin.Enable;
+            MyDb.Set<Admins>().Attach(oldAdmin);
+            MyDb.Entry<Admins>(oldAdmin).State = EntityState.Modified;
+            return MyDb.SaveChanges();
         }
     }
 }

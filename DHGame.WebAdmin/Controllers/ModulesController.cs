@@ -159,7 +159,7 @@ namespace DHGame.WebAdmin.Controllers
                     sb.Append("<span><a href=\"/Modules/Create/" + item.Id + "\">添加子栏目</a></span> | ");
                     sb.Append("<span><a href=\"javascript:void(0)\" title=\"点击进行显示与隐藏操作\">" + (item.Nullity ? "隐藏" : "显示") + "</a></span> | ");
                     sb.Append("<span><a href=\"/Modules/Edit/" + item.Id + "\">修改</a></span> | ");
-                    sb.Append("<span class=\"nb\"><a href=\"/Modules/Delete/" + item.Id + "\" onclick=\"return confirm(\"确定删除吗?\");\" >删除</a></span>"); //onclick=\"return ConfDel(2);\"  onclick=\"return Alert.confirm(\"确定删除吗?\", function () { return true; });\"   /Modules/Delete/" + item.Id + "
+                    sb.Append("<span class=\"nb\"><a href=\"/Modules/Delete/" + item.Id + "\" onclick=\"if(confirm('确认删除吗？')==false)return false;\" >删除</a></span>"); //onclick=\"return ConfDel(2);\"  onclick=\"return Alert.confirm(\"确定删除吗?\", function () { return true; });\"   /Modules/Delete/" + item.Id + "
                     sb.Append("</td>");
                     sb.Append("</tr>");
                     sb.Append("</table>");

@@ -53,5 +53,32 @@ namespace DHGame.Logic
             }
             return 0;
         }
+        public string CreateAllRolsSelect(int curRoleId)
+        {
+            string str = string.Empty;
+            List<Roles> li = MyDb.Roles.AsNoTracking().OrderBy(c => c.Id).ToList();
+            if (li.Count > 0)
+            {
+                foreach (var item in li)
+                {
+                    str += "<option value=\"" + item.Id + "\" " + (item.Id == curRoleId ? "selected=\"selected\"" : "") + ">" + item.RoleName + "</option>";
+                }
+            }
+            return str;
+            //string str = "[";
+            //List<Roles> li = MyDb.Roles.AsNoTracking().OrderBy(c => c.Id).ToList();
+            //if(li.Count>0)
+            //{
+            //    foreach (var item in li)
+            //    {
+            //        //str += "<option value=\"" + item.Id + "\" " + (item.Id == curRoleId ? "selected=\"selected\"" : "") + ">" + item.RoleName + "</option>";
+            //        str += "[\"" + item.Id + "\", \"" + item.RoleName + "\"],";
+            //    }
+            //    str = str.Substring(0, str.Length - 1);
+            //}
+
+            //str += "]";
+            //return str;
+        }
     }
 }

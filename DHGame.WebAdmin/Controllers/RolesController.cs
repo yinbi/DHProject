@@ -109,5 +109,6 @@ namespace DHGame.WebAdmin.Controllers
             ReturnMsg msg = new ReturnMsg { statusCode = "200", message = "操作成功", callbackType = "" };
             return MyJson.Serialize<ReturnMsg>(msg);
         }
+
     }
 }

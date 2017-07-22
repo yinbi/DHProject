@@ -1,6 +1,45 @@
-﻿@{
+﻿@model DHGame.Entity.DHWebSiteDB.Admins
+@{
     ViewBag.Title = "Edit";
     Layout = null;
 }
-
-<h2>Edit</h2>
+<div class="pageContent">
+    <form method="post" action="/AdminUser/Edit" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+        <div class="pageFormContent" layouth="56">
+            <p>
+                <label>Id：</label>
+                <input name="Id" type="text" size="30" value="@Model.Id" readonly="readonly" />
+            </p>
+            <p>
+                <label>登录账户：</label>
+                <input name="LoginName" class="required" type="text" size="30" value="@Model.LoginName" alt="请输入登录账户" />
+            </p>
+            <p>
+                <label>真实姓名：</label>
+                <input name="RealName" class="required" type="text" size="30" value="@Model.RealName" alt="请填写真实姓名" />
+            </p>
+            <p>
+                <label>用户角色：</label>
+                <select class="combox" name="RoleId">
+                    @Html.Raw(ViewBag.RolesSelectHtml)
+                </select>
+            </p>
+            <p>
+                <label>是否停用：</label>
+                <label>
+                    <input type="radio" name="Enable" value="true" @(Model.Enable ? "checked" : "") />正常
+                    <input type="radio" name="Enable" value="false" @(Model.Enable ? "" : "checked") />停用
+                </label>
+            </p>
+        </div>
+        <div class="formBar">
+            <ul>
+                <!--<li><a class="buttonActive" href="javascript:;"><span>保存</span></a></li>-->
+                <li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+                <li>
+                    <div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
