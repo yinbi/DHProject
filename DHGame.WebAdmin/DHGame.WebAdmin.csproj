@@ -242,6 +242,7 @@
     <Content Include="Images\subTypeBg.gif" />
     <Content Include="juibin\gzjs-esc.bat" />
     <Content Include="juibin\gzjs.sh" />
+    <Content Include="Scripts\checkf.func.js" />
     <Content Include="Scripts\common.js" />
     <Content Include="Scripts\forms.func.js" />
     <Content Include="Scripts\jquery.min.js" />

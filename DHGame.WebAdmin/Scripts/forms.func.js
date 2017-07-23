@@ -10,41 +10,42 @@ person: Feng
 
 $(function(){
 
-	$(".dataTr").mouseover(function(){
-		$(this).attr("class","dataTrOn");
-	}).mouseout(function(){
-		$(this).attr("class","dataTr");
-	});
+    $(".dataTr").mouseover(function(){
+        $(this).attr("class","dataTrOn");
+    }).mouseout(function(){
+        $(this).attr("class","dataTr");
+    });
 
 
-	$(".alltype").mouseover(function(){
-		$(this).find(".btn").addClass("on");
-		$(this).find(".drop").show();
-	}).mouseout(function(){
-		$(this).find(".btn").removeClass("on");
-		$(this).find(".drop").hide();
-	});
+    $(".alltype").mouseover(function(){
+        $(this).find(".btn").addClass("on");
+        $(this).find(".drop").show();
+    }).mouseout(function(){
+        $(this).find(".btn").removeClass("on");
+        $(this).find(".drop").hide();
+    });
 
 
-	QuickToolBar();
+    QuickToolBar();
 
 
-	$(window).resize(function(){
-		QuickToolBar();
-	});
+    $(window).resize(function(){
+        QuickToolBar();
+    });
 
 
-	$(window).scroll(function(){
-		QuickToolBar();
-	});
+    $(window).scroll(function(){
+        QuickToolBar();
+    });
 
-}).keydown(function(event){
-
-	//快捷键
-	if(event.keyCode == 27){
-		window.top.location.href = 'logout.php';
-	}
 });
+//    .keydown(function (event) {
+
+//	//快捷键
+//	if(event.keyCode == 27){
+//		window.top.location.href = 'logout.php';
+//	}
+//});
 
 
 

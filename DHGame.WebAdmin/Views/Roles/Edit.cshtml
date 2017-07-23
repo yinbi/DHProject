@@ -3,8 +3,48 @@
     ViewBag.Title = "Edit";
     Layout = null;
 }
+@*<script type="text/javascript" src="/Scripts/jquery.min.js"></script>*@
+<style>
+.dataTable .head{font-weight:bold;}
+.dataTable .head td{border-bottom:1px solid #ebebeb;}
+.dataTable td{border-bottom:1px solid #ebebeb;}
+.dataTable td.firstCol{padding-left:5px;text-align:left;}
+.dataTable td.endCol{padding-right:5px;text-align:right;}
+.dataTable td.number{color:#a5a5a5;}
+.dataTable td.action span{margin:0 6px;color:#999;}
+.dataTable td.action span.nb{margin-right:0;}
+.dataTable td.action a{text-decoration:underline;color:#3d566d;}
+.dataTable td.action a:hover{color:#d30000;}
+.dataTable span.title{display:block;width:96%;padding:2px 0;word-break:break-all;word-wrap:break-word;}
+.dataTable span.titflag{padding-left:8px;color:#900;}
+.dataTable span.titpic{display:inline-block;width:12px;height:12px;position:relative;}
+.dataTable span.titpic i{display:inline-block;width:12px;height:12px;background:url(../images/lnkBg03.png) no-repeat;position:absolute;top:2px;}
+.dataTable span.thumbs{display:block;width:80px;border:1px dotted #ccc;background:#fff;text-align:center;overflow:hidden;}
+
+.dataTable .dataTr{background:#fff;}
+.dataTable .dataTrOn{background:#f8f8f8;}
+/*权限选择*/
+ .purviewSel{padding:5px 0 10px;}
+ .purviewSel a{color:#900;}
+/*灰色按钮*/
+.grayBtn{display:inline-block;width:52px;height:24px;line-height:24px;background:url(../images/gray_btn_bg.png);text-align:center;cursor:pointer;color:#333;}
+/*展开收缩*/
+.plusSign,.minusSign{display:inline-block;padding-left:15px;background-image:url(../images/pmSignBg.png);background-repeat:no-repeat;cursor:pointer;}
+.plusSign{background-position:0 3px;}
+.minusSign{background-position:0 -38px;}
+/*左右箭头*/
+.leftArrow,.rightArrow{display:inline-block;width:6px;height:9px;margin:0 3px -2px;background-image:url(../images/lrArrow.png);background-repeat:no-repeat;*zoom:1;_position:relative;*margin:0 3px -13px;}
+.leftArrow{background-position:0 0;*margin-right:7px;}
+.rightArrow{background-position:right 0;}
+/*类别层级*/
+.subType{padding-left:30px;background:url(../images/subTypeBg.gif) no-repeat;margin-left:24px;}
+/*文件夹背景*/
+.isdir{background:url(../images/folder.gif) no-repeat left center;padding-left:18px;}
+</style>
+<script type="text/javascript" src="/Scripts/checkf.func.js"></script>
+<script type="text/javascript" src="/Scripts/forms.func.js"></script>
 <div class="pageContent">
-    <form method="post" action="/Roles/Edit" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+    <form method="post" action="/Roles/Edit" class="pageForm required-validate" onsubmit="return validateCallback(this, navTabAjaxDone);">
         <div class="pageFormContent" layouth="56">
             <p>
                 <label>Id：</label>
@@ -24,6 +64,357 @@
                     <input type="radio" name="Nullity" value="false" @(Model.Nullity ? "" : "checked") />正常 
                     <input type="radio" name="Nullity" value="true" @(Model.Nullity ? "checked" : "") />停用
                 </label>
+            </p>
+            <p>
+                <label>模块权限：</label>
+            </p>
+            <p>
+                <div rel="rowpid_0">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,2,this);" checked="checked" /></td>
+                            <td align="left"><span class="minusSign" id="rowid_2" onclick="DisplayRows(2);">关于我们1</span><span class="infoTypeTxt"> <i title="栏目属于[单页]类型">[单页]</i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][2][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][2][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][2][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][2][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_2">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,3,this);" checked="checked" /></td>
+                            <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">关于我们摘要</span><span class="infoTypeTxt"> <i title="栏目属于[单页]类型">[单页]</i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][3][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][3][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][3][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][3][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_2">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,14,this);" /></td>
+                            <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">关于我们摘要子11</span><span class="infoTypeTxt"> <i title="栏目属于[单页]类型">[单页]</i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][14][]" value="list" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][14][]" value="add" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][14][]" value="update" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][14][]" value="del" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_2">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,15,this);" /></td>
+                            <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">关于我们摘要0</span><span class="infoTypeTxt"> <i title="栏目属于[单页]类型">[单页]</i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][15][]" value="list" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][15][]" value="add" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][15][]" value="update" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][15][]" value="del" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_0">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,1,this);" checked="checked" /></td>
+                            <td align="left"><span class="minusSign" id="rowid_1" onclick="DisplayRows(1);">网站公告</span><span class="infoTypeTxt"> <i title="栏目属于[单页]类型">[单页]</i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][1][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][1][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][1][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][1][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_0">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,4,this);" checked="checked" /></td>
+                            <td align="left"><span class="minusSign" id="rowid_4" onclick="DisplayRows(4);">新闻动态</span><span class="infoTypeTxt"> <i title="栏目属于[列表]类型">[列表]<i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][4][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][4][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][4][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][4][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_0">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,5,this);" checked="checked" /></td>
+                            <td align="left"><span class="minusSign" id="rowid_5" onclick="DisplayRows(5);">产品展示</span><span class="infoTypeTxt"> <i title="栏目属于[图片]类型">[图片]<i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][5][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][5][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][5][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][5][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_5">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,6,this);" checked="checked" /></td>
+                            <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">笔记本电脑</span><span class="infoTypeTxt"> <i title="栏目属于[图片]类型">[图片]<i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][6][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][6][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][6][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][6][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_5">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,7,this);" checked="checked" /></td>
+                            <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">智能手机</span><span class="infoTypeTxt"> <i title="栏目属于[图片]类型">[图片]<i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][7][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][7][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][7][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][7][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_0">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,8,this);" checked="checked" /></td>
+                            <td align="left"><span class="minusSign" id="rowid_8" onclick="DisplayRows(8);">成功案例</span><span class="infoTypeTxt"> <i title="栏目属于[图片]类型">[图片]<i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][8][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][8][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][8][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][8][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_0">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,9,this);" checked="checked" /></td>
+                            <td align="left"><span class="minusSign" id="rowid_9" onclick="DisplayRows(9);">联系我们</span><span class="infoTypeTxt"> <i title="栏目属于[单页]类型">[单页]</i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][9][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][9][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][9][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][9][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_9">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,10,this);" checked="checked" /></td>
+                            <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">联系我们摘要</span><span class="infoTypeTxt"> <i title="栏目属于[单页]类型">[单页]</i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][10][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][10][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][10][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][10][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_0">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,11,this);" checked="checked" /></td>
+                            <td align="left"><span class="minusSign" id="rowid_11" onclick="DisplayRows(11);">软件下载</span><span class="infoTypeTxt"> <i title="栏目属于[下载]类型">[下载]<i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][11][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][11][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][11][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][11][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_0">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,12,this);" checked="checked" /></td>
+                            <td align="left"><span class="minusSign" id="rowid_12" onclick="DisplayRows(12);">商品展示</span><span class="infoTypeTxt"> <i title="栏目属于[商品]类型">[商品]<i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][12][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][12][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][12][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][12][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div rel="rowpid_0">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
+                        <tr align="left" class="dataTr">
+                            <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,13,this);" checked="checked" /></td>
+                            <td align="left"><span class="minusSign" id="rowid_13" onclick="DisplayRows(13);">幻灯Banner</span><span class="infoTypeTxt"> <i title="栏目属于[图片]类型">[图片]<i></span></td>
+                            <td width="30%" class="privTxt">
+                                <span>
+                                    <input type="checkbox" name="priv[1][13][]" value="list" checked="checked" />
+                                    查看
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][13][]" value="add" checked="checked" />
+                                    添加
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][13][]" value="update" checked="checked" />
+                                    修改
+                                </span> <span>
+                                    <input type="checkbox" name="priv[1][13][]" value="del" checked="checked" />
+                                    删除
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="purviewSel"><a href="javascript:;" onclick="SelPriv(1,true)">全选</a>&nbsp;&nbsp;<a href="javascript:;" onclick="SelPriv(1,false)">反选</a></div>
+                </div>
             </p>
         </div>
         <div class="formBar">
