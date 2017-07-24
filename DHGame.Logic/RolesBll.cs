@@ -38,6 +38,20 @@ namespace DHGame.Logic
             MyDb.Entry(role).State = EntityState.Modified;
             return MyDb.SaveChanges();
         }
+        public int EditField(Roles role)
+        {
+            Roles oldRole = MyDb.Roles.AsNoTracking().FirstOrDefault(p => p.Id == role.Id);
+            oldRole.RoleName = role.RoleName;
+            oldRole.RoleDesc = role.RoleDesc;
+            oldRole.Nullity = role.Nullity;
+            MyDb.Set<Roles>().Attach(oldRole);
+            MyDb.Entry<Roles>(oldRole).State = EntityState.Modified;
+            return MyDb.SaveChanges();
+        }
+        public void UpdateRolesModules(List<RolesPermission> oldLi,List<RolesPermission> newLi)
+        {
+
+        }
         public int Create(Roles role)
         {
             MyDb.Roles.Add(role);

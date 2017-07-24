@@ -91,12 +91,24 @@ namespace DHGame.WebAdmin.Controllers
             return View(model);
         }
         [HttpPost]
-        public string Edit(Roles role)
+        public string Edit(RolesModel role)
         {
+            Roles model = new Roles();
             if (ModelState.IsValid)
             {
-                rolesBll.Edit(role);
+                model.Id = role.Id;
+                model.RoleName = role.RoleName;
+                model.RoleDesc = role.RoleDesc;
+                model.Nullity = role.Nullity;
+                rolesBll.Edit(model);
+                if (role.RolePermissions != null && role.RolePermissions.Count > 0)
+                {
+                    List<RolesPermission> oldRolesAction = rolePermissionsBll.GetModuleIdByRoleId(role.Id);
+                    List<RolesPermission> newRolesAction = role.RolePermissions;
+                    rolesBll.UpdateRolesModules(oldRolesAction, newRolesAction);
+                }
             }
+            
             //ReturnMsg msg = new ReturnMsg { statusCode = "200", message = "操作成功", callbackType = "closeCurrent" };
             ReturnMsg msg = new ReturnMsg { statusCode = "200", message = "操作成功", navTabId = "RolesIndex", callbackType = "closeCurrent" };
             return MyJson.Serialize<ReturnMsg>(msg);
