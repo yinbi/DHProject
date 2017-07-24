@@ -19,6 +19,6 @@ namespace DHGame.Entity.DHWebSiteDB
         public bool Nullity { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreateTime { get; set; }
-        public List<RolesPermission> RolePermissions { get; set; }
+//        public List<RolesPermission> RolePermissions { get; set; }
     }
 }

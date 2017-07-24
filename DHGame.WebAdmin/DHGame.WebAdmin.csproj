@@ -161,6 +161,7 @@
     <Compile Include="Models\ModulesModel.cs" />
     <Compile Include="Models\ReturnMsg.cs" />
     <Compile Include="Models\RolesModel.cs" />
+    <Compile Include="Models\RolesPermissionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vdcode.ashx.cs">
       <DependentUpon>Vdcode.ashx</DependentUpon>
@@ -235,7 +236,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="favicon.ico" />
+    <None Include="favicon.ico--" />
     <Content Include="Global.asax" />
     <Content Include="Images\lrArrow.png" />
     <Content Include="Images\pmSignBg.png" />
@@ -917,6 +918,7 @@
     <Content Include="Views\Modules\Index2.cshtml" />
     <Content Include="Views\Modules\Edit.cshtml" />
     <Content Include="Views\Modules\Create.cshtml" />
+    <Content Include="Views\Roles\Edit_bak.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

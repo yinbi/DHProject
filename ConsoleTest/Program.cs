@@ -12,13 +12,13 @@ namespace ConsoleTest
             int a1 = 1;
             int a2 = 2;
             int a3 = 4;
-            int a4 = 6;
+            //int a4 = 6;
             int a5 = 8;
             int a6 = 16;
             int a7 = 32;
             int a8 = 64;
-            int a9 = 0;
-            int b = a1 | a2 | a3 | a4 | a5 | a6 | a7 | a8 | a9;
+            int a9 = 128;
+            int b = a1 | a2 | a3 | a5 | a6 | a7 | a8 | a9;
             Console.WriteLine(b.ToString());
             //int b1 = 3;
             //int c = a & b;

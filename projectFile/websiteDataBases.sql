@@ -98,9 +98,9 @@ SELECT * FROM DHWebSiteDB.dbo.Admins
 SELECT * FROM DHWebSiteDB.dbo.Roles
 SELECT * FROM DHWebSiteDB.dbo.Modules
 
-UPDATE DHWebSiteDB.dbo.Modules SET OrderNo=2 WHERE Id=4
-UPDATE DHWebSiteDB.dbo.Modules SET OrderNo=3 WHERE Id=5
-UPDATE DHWebSiteDB.dbo.Modules SET OrderNo=1 WHERE Id=6
+--UPDATE DHWebSiteDB.dbo.Modules SET OrderNo=2 WHERE Id=4
+--UPDATE DHWebSiteDB.dbo.Modules SET OrderNo=3 WHERE Id=5
+--UPDATE DHWebSiteDB.dbo.Modules SET OrderNo=1 WHERE Id=6
 
 --INSERT INTO DHWebSiteDB.dbo.Modules(ParentId,Title,Controller,[Action],OrderNo,Nullity)
 --VALUES(3,'≤Àµ•…Ë÷√','','',0,0)
