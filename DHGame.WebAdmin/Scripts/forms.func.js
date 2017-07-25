@@ -1,13 +1,4 @@
 
-/*
-**************************
-(C)2010-2015 phpMyWind.com
-update: 2014-5-29 00:12:36
-person: Feng
-**************************
-*/
-
-
 $(function(){
 
     $(".dataTr").mouseover(function(){

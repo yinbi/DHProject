@@ -58,6 +58,10 @@
     <Compile Include="RolesPermissionBll.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DHGame.Config\DHGame.Config.csproj">
+      <Project>{8e40d8a2-6047-44b6-b261-78dfe4402bf1}</Project>
+      <Name>DHGame.Config</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DHGame.Data\DHGame.Data.csproj">
       <Project>{55e77a63-d12d-4012-a832-3dd33a5c1ef2}</Project>
       <Name>DHGame.Data</Name>

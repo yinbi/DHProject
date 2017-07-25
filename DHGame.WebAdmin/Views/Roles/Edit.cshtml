@@ -49,17 +49,21 @@
         if (obj) {
             $("input[type='checkbox'][name^='siteid[" + siteid + "]']").attr('checked', 'checked');
             $("input[type='checkbox'][name^='priv[" + siteid + "]']").attr('checked', 'checked');
+            $("input[id^='ActionValueSum_" + siteid + "']").val("31");
         } else {
             $("input[type='checkbox'][name^='siteid[" + siteid + "]']").removeAttr('checked');
             $("input[type='checkbox'][name^='priv[" + siteid + "]']").removeAttr('checked');
+            $("input[id^='ActionValueSum_" + siteid + "']").val("0");
         }
     }
     //参数:角色，模块ID，this
     function SelRole(siteid, name, obj) {
         if (obj.checked) {
             $("input[type='checkbox'][name='priv[" + siteid + "][" + name + "][]']").attr('checked', 'checked');
+            $("#ActionValueSum_" + siteid + "_" + name).val("31");
         } else {
             $("input[type='checkbox'][name='priv[" + siteid + "][" + name + "][]']").removeAttr('checked');
+            $("#ActionValueSum_" + siteid + "_" + name).val("0");
         }
     }
 
@@ -72,7 +76,16 @@
         }
     }
     function SetActionValueSum(roleId, modulesId) {
-
+        var obj = $("input[type='checkbox'][name='priv[" + roleId + "][" + modulesId + "][]']");
+        var check_val = [];
+        var ActionValueSum = 0;
+        for (k in obj) {
+            if (obj[k].checked)
+                //check_val.push(obj[k].value);
+                ActionValueSum = obj[k].value | ActionValueSum;
+        }
+        
+        $("#ActionValueSum_" + roleId + "_" + modulesId).val(ActionValueSum);
     }
     //$(document).ready(function () {
     //    var a = 1;
@@ -113,16 +126,14 @@
                 <label>模块权限：</label>
             </p>
             <p>
-                <div rel="rowpid_0">
+                @Html.Raw(ViewBag.TreeHtml)
+                @*<div rel="rowpid_0">
                     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
                         <tr align="left" class="dataTr">
                             <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,1,this);"  /></td>
-                            <td align="left"><span class="minusSign" id="rowid_1" onclick="DisplayRows(1);">系统管理</span></td>
+                            <td align="left" width="45%"><span class="minusSign" id="rowid_1" onclick="DisplayRows(1);">系统管理</span></td>
                             <td width="30%" class="privTxt">
-                                <span>
-                                    <input type="checkbox" name="priv[1][1][]" value="1" onclick="SetActionValueSum(1,1)"  />
-                                    查看
-                                </span> 
+                                <span><input type="checkbox" name="priv[1][1][]" value="1" onclick="SetActionValueSum(1,1)"  />查看</span> 
                                 <span>
                                     <input type="checkbox" name="priv[1][1][]" value="2" onclick="SetActionValueSum(1,1)" />
                                     添加
@@ -143,7 +154,7 @@
                             <td>
                                 <input type="hidden" name="RolePermissions[0].RoleId" value="1" />
                                 <input type="hidden" name="RolePermissions[0].ModuleId" value="1" />
-                                <input type="hidden" id="ActionValueSum_1" name="RolePermissions[0].ActionValueSum" value="255" />
+                                <input type="hidden" id="ActionValueSum_1_1" name="RolePermissions[0].ActionValueSum" value="0" />
                             </td>
                         </tr>
                     </table>
@@ -152,7 +163,7 @@
                     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
                         <tr align="left" class="dataTr">
                             <td width="3%" height="32"><input type="checkbox" name="siteid[1]" value="1" onclick="SelRole(1,3,this);"  /></td>
-                            <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">系统设置</span></td>
+                            <td align="left" width="45%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="subType">系统设置</span></td>
                             <td width="30%" class="privTxt">
                                 <span>
                                     <input type="checkbox" name="priv[1][3][]" value="1" onclick="SetActionValueSum(1,3)" />
@@ -175,13 +186,13 @@
                             <td>
                                 <input type="hidden" name="RolePermissions[1].RoleId" value="1" />
                                 <input type="hidden" name="RolePermissions[1].ModuleId" value="3" />
-                                <input type="hidden" id="ActionValueSum_3" name="RolePermissions[1].ActionValueSum" value="255" />
+                                <input type="hidden" id="ActionValueSum_1_3" name="RolePermissions[1].ActionValueSum" value="0" />
                             </td>
                         </tr>
                     </table>
                     
-                </div>
-                <div class="purviewSel"><a href="javascript:;" onclick="SelPriv(1,true)">全选</a>&nbsp;&nbsp;<a href="javascript:;" onclick="SelPriv(1,false)">反选</a></div>
+                </div>*@
+                <div class="purviewSel"><a href="javascript:;" onclick="SelPriv(@(Model.Id),true)">全选</a>&nbsp;&nbsp;<a href="javascript:;" onclick="SelPriv(@(Model.Id),false)">反选</a></div>
                 @*<div rel="rowpid_2">
                     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="dataTable">
                         <tr align="left" class="dataTr">

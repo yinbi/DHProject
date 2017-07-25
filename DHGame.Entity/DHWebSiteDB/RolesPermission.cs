@@ -14,8 +14,13 @@ namespace DHGame.Entity.DHWebSiteDB
         [Key]
         public int Id { get; set; }
         public int RoleId { get; set; }
+        [ForeignKey("RoleId")]
+        public Roles Roles { get; set; }
         public int ModuleId { get; set; }
+        [ForeignKey("ModuleId")]
+        public Modules Modules { get; set; }
         public int ActionValueSum { get; set; }
+         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime CreateTime { get; set; }
     }
 }

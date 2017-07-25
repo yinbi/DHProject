@@ -65,6 +65,8 @@ namespace DHGame.WebAdmin.Controllers
         [HttpPost]
         public ActionResult Edit(Modules modules)
         {
+            if (modules.Controller == null) modules.Controller = "";
+            if (modules.Style == null) modules.Style = "";
             if (ModelState.IsValid)
             {
                 modulesBll.Edit(modules);

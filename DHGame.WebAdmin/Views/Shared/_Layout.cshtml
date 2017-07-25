@@ -87,14 +87,15 @@
             </div>
 
             <div id="navMenu">
-                <ul>
+                @*<ul>
                     <li class="selected"><a href="sidebar_1.html"><span>资讯管理</span></a></li>
                     <li><a href="sidebar_2.html"><span>订单管理</span></a></li>
                     <li><a href="sidebar_1.html"><span>产品管理</span></a></li>
                     <li><a href="sidebar_2.html"><span>会员管理</span></a></li>
                     <li><a href="sidebar_1.html"><span>服务管理</span></a></li>
                     <li><a href="sidebar_2.html"><span>系统设置</span></a></li>
-                </ul>
+                </ul>*@
+                @Html.Action("TopMenu", "Roles");
             </div>
         </div>
 
@@ -116,15 +117,6 @@
                             <li><a href="/AdminUser/Index" target="navTab" rel="AdminUserIndex">管理员</a></li>
                             <li><a href="/Roles/Index" target="navTab" rel="RolesIndex">角色</a></li>
                             <li><a href="/Modules/Index" target="navTab" external="true" rel="ModulesIndex">模块管理</a></li>
-                            @*<li><a href="http://www.16m.com/" target="navTab" rel="ModulesIndex1">模块管理</a></li>*@
-                            @*<li><a href="/Modules/Index" target="navTab" rel="page1">模块管理</a></li>*@
-                            @*<li><a href="demo_page1.html" target="navTab" rel="demo_page2">表单查询页面</a></li>
-                            <li><a href="demo_page4.html" target="navTab" rel="demo_page4">表单录入页面</a></li>
-                            <li><a href="demo_page5.html" target="navTab" rel="demo_page5">有文本输入的表单</a></li>
-                            <li><a href="javascript:;">选项卡和图形切换的页面</a></li>
-                            <li><a href="javascript:;">左右两个互动的页面</a></li>
-                            <li><a href="javascript:;">列表输入的页面</a></li>
-                            <li><a href="javascript:;">双层栏目列表的页面</a></li>*@
                         </ul>
                     </div>
                 </div>

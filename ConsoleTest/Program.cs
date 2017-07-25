@@ -18,8 +18,10 @@ namespace ConsoleTest
             int a7 = 32;
             int a8 = 64;
             int a9 = 128;
-            int b = a1 | a2 | a3 | a5 | a6 | a7 | a8 | a9;
+            int b = a1 | a2 | a3 | a5 | a6 | a7 | a8 ;
             Console.WriteLine(b.ToString());
+            int c = b & a9;
+            Console.WriteLine(c.ToString());
             //int b1 = 3;
             //int c = a & b;
             //int d = a | b;

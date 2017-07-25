@@ -1,11 +1,4 @@
 
-/*
-**************************
-(C)2010-2015 phpMyWind.com
-update: 2012-1-2 10:09:06
-person: Feng
-**************************
-*/
 
 //$(function(){}).keydown(function(event){
 

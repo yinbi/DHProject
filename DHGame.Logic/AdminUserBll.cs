@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DHGame.Entity.DHWebSiteDB;
 using System.Data.Entity;
+using DHGame.Config;
 
 namespace DHGame.Logic
 {
@@ -46,10 +47,19 @@ namespace DHGame.Logic
             Admins oldAdmin = MyDb.Admins.AsNoTracking().FirstOrDefault(p => p.Id == admin.Id);
             oldAdmin.LoginName = admin.LoginName;
             oldAdmin.RealName = admin.RealName;
+            if(!string.IsNullOrEmpty(admin.LoginPwd))
+            {
+                oldAdmin.LoginPwd = EncryptionHelper.EncryptText(admin.LoginPwd);
+            }
             oldAdmin.RoleId = admin.RoleId;
             oldAdmin.Enable = admin.Enable;
             MyDb.Set<Admins>().Attach(oldAdmin);
             MyDb.Entry<Admins>(oldAdmin).State = EntityState.Modified;
+            return MyDb.SaveChanges();
+        }
+        public int Create(Admins model)
+        {
+            MyDb.Admins.Add(model);
             return MyDb.SaveChanges();
         }
     }

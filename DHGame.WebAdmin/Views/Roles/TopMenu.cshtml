@@ -1,0 +1,27 @@
+﻿@model List<DHGame.Entity.DHWebSiteDB.RolesPermission>
+@{
+    Layout = null;
+}
+<ul>
+    @*<li class="selected"><a href="sidebar_1.html"><span>资讯管理</span></a></li>
+    <li><a href="sidebar_2.html"><span>订单管理</span></a></li>
+    <li><a href="sidebar_1.html"><span>产品管理</span></a></li>
+    <li><a href="sidebar_2.html"><span>会员管理</span></a></li>
+    <li><a href="sidebar_1.html"><span>服务管理</span></a></li>
+    <li><a href="sidebar_2.html"><span>系统设置</span></a></li>*@
+    @foreach (var item in Model)
+    {
+        
+    }
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        if (i == 0)
+        {
+            <li class="selected"><a href="/Roles/LeftMenu/@Model[i].Modules.Id"><span>@Model[i].Modules.Title</span></a></li>
+        }
+        else
+        {
+            <li ><a href="/Roles/LeftMenu/@Model[i].Modules.Id"><span>@Model[i].Modules.Title</span></a></li>
+        }
+    }
+</ul>

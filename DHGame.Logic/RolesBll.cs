@@ -48,9 +48,20 @@ namespace DHGame.Logic
             MyDb.Entry<Roles>(oldRole).State = EntityState.Modified;
             return MyDb.SaveChanges();
         }
-        public void UpdateRolesModules(List<RolesPermission> oldLi,List<RolesPermission> newLi)
+        public void UpdateRolesModules(List<RolesPermission> oldRolePer, List<RolesPermission> newRolePer)
         {
-
+            foreach (var item in oldRolePer)
+            {
+                RolesPermission rp = newRolePer.Where(p => p.RoleId == item.RoleId && p.ModuleId == item.ModuleId).FirstOrDefault();
+                if (rp == null)
+                {
+                    Delete(item.Id);
+                }
+            }
+            foreach (var item in newRolePer)
+            {
+                
+            }
         }
         public int Create(Roles role)
         {

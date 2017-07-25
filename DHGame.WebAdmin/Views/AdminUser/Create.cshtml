@@ -1,26 +1,26 @@
-﻿@model DHGame.Entity.DHWebSiteDB.Admins
+﻿@model DHGame.WebAdmin.Models.AdminUserModel
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = null;
 }
 <div class="pageContent">
-    <form method="post" action="/AdminUser/Edit" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
+    <form method="post" action="/AdminUser/Create" class="pageForm required-validate" onsubmit="return validateCallback(this, dialogAjaxDone);">
         <div class="pageFormContent" layouth="56">
-            <p>
+            @*<p>
                 <label>Id：</label>
                 <input name="Id" type="text" size="30" value="@Model.Id" readonly="readonly" />
-            </p>
+            </p>*@
             <p>
                 <label>登录账户：</label>
-                <input name="LoginName" class="required" type="text" size="30" value="@Model.LoginName" alt="请输入登录账户" />
+                <input name="LoginName" class="required" type="text" size="30" value="" alt="请输入登录账户" />
             </p>
             <p>
                 <label>真实姓名：</label>
-                <input name="RealName" class="required" type="text" size="30" value="@Model.RealName" alt="请填写真实姓名" />
+                <input name="RealName" class="required" type="text" size="30" value="" alt="请填写真实姓名" />
             </p>
             <p>
                 <label>登录密码：</label>
-                <input name="LoginPwd" type="text" size="30" value="" alt="不更改密码不需要填写" />
+                <input name="LoginPwd" type="text" size="30" value="" alt="请填写登录密码" />
             </p>
             <p>
                 <label>用户角色：</label>
@@ -31,8 +31,8 @@
             <p>
                 <label>是否停用：</label>
                 <label>
-                    <input type="radio" name="Enable" value="true" @(Model.Enable ? "checked" : "") />正常
-                    <input type="radio" name="Enable" value="false" @(Model.Enable ? "" : "checked") />停用
+                    <input type="radio" name="Enable" value="true" checked="checked" />正常
+                    <input type="radio" name="Enable" value="false" />停用
                 </label>
             </p>
         </div>

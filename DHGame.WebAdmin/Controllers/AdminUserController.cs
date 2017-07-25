@@ -1,4 +1,5 @@
-﻿using DHGame.Entity.DHWebSiteDB;
+﻿using DHGame.Config;
+using DHGame.Entity.DHWebSiteDB;
 using DHGame.Logic;
 using DHGame.Utility;
 using DHGame.WebAdmin.Models;
@@ -135,6 +136,28 @@ namespace DHGame.WebAdmin.Controllers
             {
                 adminUserBll.Edit(user);
             }
+            ReturnMsg msg = new ReturnMsg { statusCode = "200", message = "操作成功", callbackType = "closeCurrent" };
+            return MyJson.Serialize<ReturnMsg>(msg);
+        }
+        public ActionResult Create()
+        {
+            string _html = rolesBll.CreateAllRolsSelect(0);
+            ViewBag.RolesSelectHtml = _html;
+            return View();
+        }
+        [HttpPost]
+        public string Create(AdminUserModel model)
+        {
+            Admins adminUser = new Admins();
+            adminUser.LoginName = model.LoginName;
+            adminUser.LoginPwd = EncryptionHelper.EncryptText(model.LoginPwd);
+            adminUser.RealName = model.RealName;
+            adminUser.RoleId = model.RoleId;
+            adminUser.Enable = model.Enable;
+            adminUser.ErrNum = 0;
+            adminUser.LastLoginIp = "";
+            adminUser.LastLoginTime = DateTime.Now;
+            adminUserBll.Create(adminUser);
             ReturnMsg msg = new ReturnMsg { statusCode = "200", message = "操作成功", callbackType = "closeCurrent" };
             return MyJson.Serialize<ReturnMsg>(msg);
         }

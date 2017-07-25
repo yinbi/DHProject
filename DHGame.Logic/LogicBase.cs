@@ -15,6 +15,7 @@ namespace DHGame.Logic
         protected DHWebSiteDatabase MyDb = new DHWebSiteDatabase();
         protected string UserName = null;
         protected int UserId = 0;
+        protected int RoleId = 0;
 
         public LogicBase()
         {
@@ -23,6 +24,7 @@ namespace DHGame.Logic
                 var currentUser = Utility.MyJson.Deserialize<CurrentUser>(HttpContext.Current.User.Identity.Name);
                 UserName = currentUser.Name;
                 UserId = currentUser.Id;
+                RoleId = currentUser.RoleId;
             }
             catch (Exception exception)
             {
