@@ -233,10 +233,13 @@ namespace DHGame.WebAdmin.Controllers
         public ActionResult LeftMenu(int? id)
         {
             List<RolesPermission> li = rolePermissionsBll.GetCurRolePer();
-            if(id==null)
+            if (id == null)
             {
                 RolesPermission topModel = li.Where(p => p.Modules.ParentId == 0).OrderBy(p => p.Modules.OrderNo).FirstOrDefault();
-                id = topModel.Modules.Id;
+                if (topModel != null)
+                {
+                    id = topModel.Modules.Id;
+                }
             }
             ViewBag.ModuleId = id;
             return View(li);

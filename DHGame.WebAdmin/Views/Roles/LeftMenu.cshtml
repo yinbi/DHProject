@@ -3,7 +3,9 @@
     Layout = null;
 }
 <div class="accordion" fillspace="sidebar">
-    @foreach (var item in Model)
+    @if (ViewBag.ModuleId != null)
+    {
+        foreach (var item in Model)
         {
             if (item.Modules.ParentId == ViewBag.ModuleId)
             {
@@ -20,4 +22,5 @@
                 </div>
             }
         }
+    }
 </div>
