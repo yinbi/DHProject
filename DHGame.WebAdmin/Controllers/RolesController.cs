@@ -230,11 +230,16 @@ namespace DHGame.WebAdmin.Controllers
             List<RolesPermission> li = rolePermissionsBll.GetCurRolePer().Where(p => p.Modules.ParentId == 0).OrderBy(p => p.Modules.OrderNo).ToList();
             return View(li);
         }
-        public ActionResult LeftMenu(int id)
+        public ActionResult LeftMenu(int? id)
         {
-            List<RolesPermission> li = rolePermissionsBll.GetCurRolePer().Where(p => p.Modules.ParentId == 0).OrderBy(p => p.Modules.OrderNo).ToList();
+            List<RolesPermission> li = rolePermissionsBll.GetCurRolePer();
+            if(id==null)
+            {
+                RolesPermission topModel = li.Where(p => p.Modules.ParentId == 0).OrderBy(p => p.Modules.OrderNo).FirstOrDefault();
+                id = topModel.Modules.Id;
+            }
             ViewBag.ModuleId = id;
-            return View();
+            return View(li);
         }
 
     }

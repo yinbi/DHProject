@@ -2,30 +2,22 @@
 @{
     Layout = null;
 }
-@foreach (var item in Model)
-{
-    if (item.Modules.ParentId == ViewBag.ModuleId)
-    {
-        <div class="accordionHeader">
-            <h2><span>Folder</span>@item.Modules.Title</h2>
-        </div>
-        <div class="accordionContent">
-            <ul class="tree treeFolder">
-                @foreach (var itemTree in Model.Where(p => p.Modules.ParentId == item.Modules.Id))
-                {
-                    <li><a href="/@itemTree.Modules.Controller/@itemTree.Modules.Controller" target="navTab" rel="@(itemTree.Modules.Controller)@(itemTree.Modules.Action)">管理员</a></li>
-                }
-            </ul>
-        </div>
-    }
-}
-@*<div class="accordionHeader">
-    <h2><span>Folder</span>系统设置</h2>
+<div class="accordion" fillspace="sidebar">
+    @foreach (var item in Model)
+        {
+            if (item.Modules.ParentId == ViewBag.ModuleId)
+            {
+                <div class="accordionHeader">
+                    <h2><span>Folder</span>@item.Modules.Title</h2>
+                </div>
+                <div class="accordionContent">
+                    <ul class="tree treeFolder">
+                        @foreach (var itemChild in Model.Where(p => p.Modules.ParentId == item.Modules.Id))
+                        {
+                            <li><a href="/@itemChild.Modules.Controller/@itemChild.Modules.Action" target="navTab" @itemChild.Modules.Style rel="@(itemChild.Modules.Controller)@(itemChild.Modules.Action)">@itemChild.Modules.Title</a></li>
+                        }
+                    </ul>
+                </div>
+            }
+        }
 </div>
-<div class="accordionContent">
-    <ul class="tree treeFolder">
-        <li><a href="/AdminUser/Index" target="navTab" rel="AdminUserIndex">管理员</a></li>
-        <li><a href="/Roles/Index" target="navTab" rel="RolesIndex">角色</a></li>
-        <li><a href="/Modules/Index" target="navTab" external="true" rel="ModulesIndex">模块管理</a></li>
-    </ul>
-</div>*@
